@@ -2,10 +2,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sito allenamenti OII</title>
 	<link rel="stylesheet" href="stile.css" type="text/css">
+    <script type="text/javascript" src="classifica.js"></script>
 </head>
 
-<body>
-	<h1>Olimpiadi di Informatica</h1>
+<body onload="loadClassifica()">
+	<h1>Classifica</h1>
 	<div class="leftPart">
 		<ul class="menuBar">
 			<li><a href="index.html" class="noLnk">Home</a></li>
@@ -17,12 +18,9 @@
 	</div>
 	<div class="mainPart">
 		<div class="post">
-			<h2>Post1</h2>
-			<p>bello sto post</p>
-		</div>
-		<div class="post">
-			<h2>Post2</h2>
-			<p> bellissimo sto post2 </p>
+			<ol id="classifica">
+				<div style="text-align:center"><img src="res/loading.gif"></div></ol>
+			</ol>
 		</div>
 	</div>	
 </body>

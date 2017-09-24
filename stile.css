@@ -1,30 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+body{
+    font-family: 'Inconsolata', monospace;
+    background-color: #011622;
+}
 h1{
-    font-family: sans-serif;
+    /*font-family: sans-serif;*/
     text-transform: uppercase;
     text-align: center;
     background-image: url('res/background.jpg');
-    padding: 2.5em;
+    padding: 1.5em;
     background-size: cover;
+    color: white;
 }
 @media screen and (max-width: 480px){
-    /*Stili diversi per dispositivi mobili*/
+    h1{
+        padding: 1em!important;
+    }
+    .leftPart, .mainPart{
+        /*display: block!important;*/
+        width:100%!important;
+    }
+    .menuBar li{
+        text-align: center;
+    }
+}
+@media screen and (min-width: 481px){
+    .leftPart, .mainPart{
+        min-height: calc(100vh - 7em);
+    }
 }
 .leftPart, .mainPart{
     display: inline-block;
-    height: 100%;
     background-color: #036395;
 }
 .mainPart{
     width:80%;
 }
 .leftPart{
-    width:19%;
+    width:calc(20% - 10px);
     vertical-align: top;
 }
 .post{
     display: block;
     margin: 1em;
     background-color: #C7F6FF;
+    padding: 1em;
+    border-radius: 0.2em;
 }
 .menuBar li{
     display: block;
@@ -41,4 +62,17 @@ h1{
 }
 .noLnk::visited{
     color: inherit;
+}
+img{
+    max-height: 10em;
+}
+.tutor{
+    background-color: aquamarine;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 0.3em;
+}
+.classAvatar {
+    height: 2em;
+    margin-right: 1em;
 }

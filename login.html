@@ -1,27 +1,26 @@
 <head> 
 	<title> Sito allenamenti OII - login </title>
 	<link rel="stylesheet" href="stile.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-	<header>
-		<h1 id="mainTitle"> LOGIN </h1>
-	</header>
-	<div id= "mainWrapper">
-		<div id=leftPart>
-			<ul>
-				<li><a href="index.html" style="text-decoration: none; color: black"> home</a></li>
-				<li><a href="tutor.html" style="text-decoration: none; color: black"> tutor</a></li>
-				<li><a href="login.html" style="text-decoration: none; color: black"> login</li>
-				<li><a href="registrati.html" style="text-decoration: none; color: black"> registrati</li>
-			</ul>
-		</div>
-		<div id= "mainPart">
-			<div id= "login">
-				<p> Username: <input></input></p>
-				<p> Password: <input></input></p>
-				
-			</div>
-		</div>
-	</div>
+    <h1>Login</h1>
+    <div class=leftPart>
+        <ul class="menuBar">
+			<li><a href="index.html" class="noLnk">Home</a></li>
+			<li><a href="tutor.html" class="noLnk">Tutor</a></li>
+			<li><a href="login.html" class="noLnk">Login</a></li>
+			<li><a href="registrati.html" class="noLnk">Registrati</a></li>
+            <li><a href="classifica.html" class="noLnk">Classifica</a></li>
+		</ul>
+    </div>
+    <div class="mainPart">
+        <form class="post" method="POST">
+            Nome utente: <input type="text" name="username"><br>
+            Password: <input type="password" name="password"><br>
+            <input type="submit" value="Entra">
+        </form>
+    </div>
+</div>
 </body>
