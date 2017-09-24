@@ -1,9 +1,3 @@
-function getUrl(url,func){
-    var webrequest = new XMLHttpRequest();
-    webrequest.open('GET', url, true);
-    webrequest.onload=func;
-    webrequest.send(null);
-}
 function getUrlP(url,func){
     return new Promise(function(resolve,reject){
     var webrequest = new XMLHttpRequest();
@@ -13,23 +7,9 @@ function getUrlP(url,func){
     };
     webrequest.send(null);});
 }
-function getUrlSync(url,func){
-    var webrequest = new XMLHttpRequest();
-    webrequest.open('GET', url, false);
-    webrequest.onload=func;
-    webrequest.send(null);
-}
 function urlBN(){
     var tmp=location.pathname.split("/");
     return location.protocol+"//"+window.location.hostname+document.location.pathname.replace(tmp[tmp.length-1],"");
-}
-function postUrl(url,data,func){
-    console.log(JSON.stringify(data));
-    var webrequest = new XMLHttpRequest();
-    webrequest.open('POST', url, true);
-    webrequest.setRequestHeader("Content-type", "application/json");
-    webrequest.onload=func;
-    webrequest.send(JSON.stringify(data));
 }
 function loadClassifica(){
     var pr=[];
