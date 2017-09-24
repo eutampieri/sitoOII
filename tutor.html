@@ -1,0 +1,71 @@
+<head>
+	<title>Sito allenamenti OII - tutor</title>
+	<link rel="stylesheet" href="tutor.css" type="text/css">
+</head>
+
+<body>
+	<header>
+		<h1 id="mainTitle">I NOSTRI TUTOR</h1>
+	</header>
+	<div id="mainWrapper">
+		<div id="leftPart">
+			<ul>
+				<li><a href="OII.html" style="text-decoration: none; color: black"> home</a></li>
+				<li><a href="tutor.html" style="text-decoration: none; color: black"> tutor</a></li>
+				<li><a href="login.html" style="text-decoration: none; color: black"> login</li>
+				<li><a href="registrati.html" style="text-decoration: none; color: black"> registrati</li>
+			</ul>
+		</div>
+		<div id="mainPart">
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('marcoImage')">Marco Selvatici</h2>
+				<img src="ref/marcoImage.jpg" class="popupImage" id="marcoImage"> </img> 
+				<p>Studente universitario frequentante la facolta' di ingegneria informatica all'Imperial College di Londra </p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('ugoImage')">Ugo Baroncini</h2>
+				<img src="ref/ugoImage.jpg" class="popupImage" id="ugoImage"> </img>
+				<p>Studente universitario frequentante la facolta' di informatica all'universita' di Cesena</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('giorgioImage')">Giorgio Minoccari</h2>
+				<img src="ref/giorgioImage.jpg" class="popupImage" id="giorgioImage"> </img>
+				<p>Studente del 5^ anno al liceo scientifico delle scienze applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('piaceImage')">Marco Piacentini</h2>
+				<img src="ref/piaceImage.jpg" class="popupImage" id="piaceImage"> </img>
+				<p>Studente del 5^ anno al liceo scientifico delle scienze applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('filippoImage')">Filippo Selvatici</h2>
+				<img src="ref/filippoImage.jpg" class="popupImage" id="filippoImage"> </img>
+				<p>Studente del 3^ anno al liceo scientifico delle scienze applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('michealImage')">Micheal Chelli</h2>
+				<img src="ref/michealImage.jpg" class="popupImage" id="michealImage"> </img>
+				<p>Studente del 4^ anno al liceo scientifico delle scienze applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('rebeccaImage')">Rebecca Monti</h2>
+				<img src="ref/rebeccaImage.jpg" class="popupImage" id="rebeccaImage"> </img>
+				<p>Studente del 4^ anno al liceo scientifico delle scienze applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('eugenioImage')">Eugenio Tampieri</h2>
+				<img src="ref/eugenioImage.jpg" class="popupImage" id="eugenioImage"> </img>
+				<p>Studente del 4^ anno al liceo scientifico delle scienze applicate "F. Alberghetti"</p>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	function openImage(id){
+		if(document.getElementById(id).style.display == "block")
+			document.getElementById(id).style.display = "none";
+		else
+			document.getElementById(id).style.display = "block";
+	}
+</script>
