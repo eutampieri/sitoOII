@@ -12,7 +12,7 @@ h1{
 .leftPart, .mainPart{
     display: inline-block;
     height: 100%;
-    background-color: rgba(1, 35, 53, 0.63);
+    background-color: #036395;
 }
 .mainPart{
     width:80%;
@@ -33,7 +33,7 @@ h1{
     padding: .5em;
 }
 .menuBar{
-    padding: none;
+    padding: 0;
 }
 .noLnk{
     color:inherit;
