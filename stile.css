@@ -24,3 +24,10 @@ h1{
 .menuBar li{
     display: block;
 }
+.noLnk{
+    color:black;
+    text-decoration: none;
+}
+.noLnk::visited{
+    color: black;
+}
