@@ -4,12 +4,15 @@ h1{
     text-align: center;
     background-image: url('res/background.jpg');
     padding: 2.5em;
+    background-size: cover;
 }
 @media screen and (max-width: 480px){
     /*Stili diversi per dispositivi mobili*/
 }
 .leftPart, .mainPart{
     display: inline-block;
+    height: 100%;
+    background-color: rgba(1, 35, 53, 0.63);
 }
 .mainPart{
     width:80%;
@@ -20,14 +23,22 @@ h1{
 }
 .post{
     display: block;
+    margin: 1em;
+    background-color: #C7F6FF;
 }
 .menuBar li{
     display: block;
+    background-color: #426BF4;
+    color: white;
+    padding: .5em;
+}
+.menuBar{
+    padding: none;
 }
 .noLnk{
-    color:black;
+    color:inherit;
     text-decoration: none;
 }
 .noLnk::visited{
-    color: black;
+    color: inherit;
 }
