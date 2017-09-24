@@ -1,0 +1,16 @@
+h1{
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 480px){
+    /*Stili diversi per dispositivi mobili*/
+}
+.leftPart, .mainPart{
+    display: inline-block;
+}
+.post{
+    display: block;
+}
+.menuBar li{
+    display: block;
+}
