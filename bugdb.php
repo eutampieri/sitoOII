@@ -53,7 +53,7 @@
                 if(strpos($_POST["tags"],"python")!==false){
                     $lang="python";
                 }
-                $id=date("Y")."-".strval(intval(file_get_contents(date("Y")))+1);
+                $id=date("Y")."-".strval(intval(file_get_contents("res/".date("Y")))+1);
                 $data = date("Y-m-d H:i:s");
                 $qry="INSERT INTO Bugs VALUES (:id, :affects, :notify, :code, :lang, :creator, \"0\", :data, :comment, :descr, :tags)";
                 $stmt = $file_db->prepare($qry);
