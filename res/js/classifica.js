@@ -2,7 +2,7 @@ function loadClassifica(){
     load();
     var pr=[];
     for(var i = 100; i<801;i+=100){
-        pr.push(getUrlP(urlBN()+"res/classificaCms.php?first="+(i-20).toString()+"&last="+i.toString(), 
+        pr.push(getUrlP(urlBN()+"res/classificaCms.php?first="+(i-100).toString()+"&last="+i.toString(), 
             function(wr){
                 var ar=[];
                 var dati=JSON.parse(wr.responseText).users;

@@ -1,8 +1,6 @@
 <?php
 $url = 'https://cms.di.unipi.it/api/task';
 $data = array("action"=>"list","search"=>$_GET["term"],"first"=>0,"last"=>100);
-
-// use key 'http' even if you send the request to https://...
 $options = array(
     'http' => array(
         'header'  => "Content-type: application/json\r\n",
@@ -31,8 +29,6 @@ for($i=0;$i<count($result["tasks"]);$i++){
 }
 $url = 'https://aica.cms.di.unipi.it/api/task';
 $data = array("action"=>"list","search"=>$_GET["term"],"first"=>0,"last"=>100);
-
-// use key 'http' even if you send the request to https://...
 $options = array(
     'http' => array(
         'header'  => "Content-type: application/json\r\n",
