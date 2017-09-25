@@ -1,20 +1,8 @@
-function getUrlP(url,func){
-    return new Promise(function(resolve,reject){
-    var webrequest = new XMLHttpRequest();
-    webrequest.open('GET', url, true);
-    webrequest.onload=function(){
-        resolve(func(webrequest));
-    };
-    webrequest.send(null);});
-}
-function urlBN(){
-    var tmp=location.pathname.split("/");
-    return location.protocol+"//"+window.location.hostname+document.location.pathname.replace(tmp[tmp.length-1],"");
-}
 function loadClassifica(){
+    load();
     var pr=[];
-    for(var i = 20; i<801;i+=20){
-        pr.push(getUrlP(urlBN()+"classificaCms.php?first="+(i-20).toString()+"&last="+i.toString(), 
+    for(var i = 100; i<801;i+=100){
+        pr.push(getUrlP(urlBN()+"res/classificaCms.php?first="+(i-20).toString()+"&last="+i.toString(), 
             function(wr){
                 var ar=[];
                 var dati=JSON.parse(wr.responseText).users;

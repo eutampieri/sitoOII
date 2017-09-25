@@ -1,0 +1,73 @@
+<html>
+
+<head>
+	<title>Segnala nuovo bug</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="res/css/stile.css">
+	<link rel="stylesheet" href="res/css/awesomplete.css" />
+	<script src="res/js/awesomplete.min.js" async></script>
+	<script type="text/javascript" src="res/js/main.js"></script>
+	<script type="text/javascript">
+		var affects;
+		var tags;
+
+		function loadSearch() {
+			affects = new Awesomplete(document.querySelector("#affects"));
+			tags = new Awesomplete(document.querySelector("#tags"));
+			tags.minChars = 0;
+			//theSearch();
+		}
+
+		function updateTags() {
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET", "act.php?problema=" + document.getElementById("affects").value, true);
+			ajax.onload = function () {
+				var list = JSON.parse(ajax.responseText);
+				tags.list = list;
+			};
+			ajax.send();
+		}
+
+		function sAffects() {
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET", "ac.php?term=" + document.getElementById("affects").value, true);
+			ajax.onload = function () {
+				var list = JSON.parse(ajax.responseText);
+				affects.list = list;
+			};
+			ajax.send();
+		}
+	</script>
+</head>
+
+<body onload="load();loadSearch()">
+	<h1>Segnala nuovo bug</h1>
+	<div class="leftPart"></div>
+	<div class="mainPart">
+		<div class="post">
+			<a href="bugdb.php" class="button">Indietro</a>
+			<p>
+				Qui puoi segnalare un nuovo bug. Ricorda di inserire pi&ugrave; informazioni possibili al fine di rendere pi&ugrave; comprensibile
+				il tuo problema
+			</p>
+			<form id="bug" method="POST" action="bugdb.php">
+				<input type="hidden" name="action" value="segnala">
+				<label>Nome:</label><br>
+				<input type="text" name="creator"><br>
+				<label>Breve descrizione (ad es. Testcase sbagliato):</label><br>
+				<input type="text" name="desc"><br>
+				<label>Il problema riguarda:</label><br>
+				<input id="affects" name="affects" onkeyup="sAffects()"><br>
+				<label>Tags:</label><br>
+				<input id="tags" name="tags" onclick="updateTags()"><br>
+				<label>Invia mail di aggiornamento a (lasciare vuoto se non le si vogliono ricevere):</label><br>
+				<input type="email" name="notify"><br>
+				<div class="label">Il tuo codice</div><br>
+				<textarea form="bug" name="code">Inserisci qui il codice</textarea><br>
+				<div class="label">Descrizione</div><br>
+				<textarea form="bug" name="commento">Inserisci qui una descrizione dettagliata del problema</textarea><br>
+				<input type="submit" value="Segnala">
+			</form>
+		</div>
+	</div>
+</body>
