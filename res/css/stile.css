@@ -7,6 +7,7 @@ body{
     /*font-family: monospace;*/
     /*background-color: #011622;*/
     background-color: #036395;
+    margin: 0;
 }
 h1{
     /*font-family: sans-serif;*/
@@ -21,13 +22,20 @@ h1{
     h1{
         padding: 1em!important;
     }
-    .leftPart, .mainPart{
+    .mainPart{
         /*display: block!important;*/
         width:100%!important;
     }
+    .leftPart{
+        width: calc(100% - 2em)!important;
+        margin-right: 1em;
+    }
+    .menuBar{
+        border-radius: .5em;
+    }
     .menuBar li{
         text-align: center;
-        background-color: #1C75EB;
+        /*background-color: #1C75EB;*/
     }
 }
 .aperti{
@@ -52,15 +60,14 @@ h1{
         min-height: calc(100vh - 7em);
         max-height: 100%;
     }
-    .menuBar{
-        border-radius: 1em;
-        background-color: #1C75EB;
-    }
     /*.menuBar li::before{
         content:'';
         width:1em;
         display: inline-block;
     }*/
+    .menuBar{
+        border-radius: 1em;
+    }
     .menuBar li{
         margin-left: 1.5em!important;
     }
@@ -73,8 +80,9 @@ h1{
     width:80%;
 }
 .leftPart{
-    width:calc(20% - 10px);
+    width: calc(20% - 10px - 1em);
     vertical-align: top;
+    margin-left: 1em;
 }
 .post{
     display: block;
@@ -90,6 +98,7 @@ h1{
 }
 .menuBar{
     padding: 0;
+    background-color: #1C75EB;
 }
 .noLnk{
     color:inherit;
