@@ -25,3 +25,10 @@ function loadSideBar(){
 function load(){
     loadSideBar();
 }
+function postUrl(url, func, data)
+{
+    var webrequest = new XMLHttpRequest();
+    webrequest.open('POST', url, true);
+    webrequest.onload=func;
+    webrequest.send(data);
+}
