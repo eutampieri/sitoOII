@@ -108,3 +108,6 @@ img{
     height: 2em;
     margin-right: 1em;
 }
+.nascosto{
+    display: none;
+}
