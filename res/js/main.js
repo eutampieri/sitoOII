@@ -30,5 +30,6 @@ function postUrl(url, func, data)
     var webrequest = new XMLHttpRequest();
     webrequest.open('POST', url, true);
     webrequest.onload=func;
+    webrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     webrequest.send(data);
 }
