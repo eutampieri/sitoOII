@@ -5,34 +5,44 @@
 body{
     font-family: 'Inconsolata', monospace;
     /*font-family: monospace;*/
-    background-color: #011622;
+    /*background-color: #011622;*/
+    background-color: #036395;
+    margin: 0;
 }
 h1{
     /*font-family: sans-serif;*/
     text-transform: uppercase;
     text-align: center;
     background-image: url('../background.jpg');
-    padding: 1.5em;
+    padding: 5vh;
     background-size: cover;
     color: white;
 }
-@media screen and (max-width: 480px){
+@media screen and (max-width: 699px){
     h1{
         padding: 1em!important;
     }
-    .leftPart, .mainPart{
+    .mainPart{
         /*display: block!important;*/
         width:100%!important;
     }
+    .leftPart{
+        width: calc(100% - 2em)!important;
+        margin-right: 1em;
+    }
+    .menuBar{
+        border-radius: .5em;
+    }
     .menuBar li{
         text-align: center;
+        /*background-color: #1C75EB;*/
     }
 }
 .aperti{
 	background-color: #ffff66!important;
 	margin-bottom: 1.5em;
-	padding: 1em;
-	padding-top: 0;
+    padding: 1em;
+    border-radius: 0.5em;
 }
 .button{
 	background-color: #ffffff;
@@ -42,12 +52,24 @@ h1{
 	text-decoration: none;
     display: block;
     border-radius: 0.7em;
-    margin:0.5em;
+    margin: 0.5em 1em 0.5em 1em;
 	color:#004d4d!important;
 }
-@media screen and (min-width: 481px){
+@media screen and (min-width: 700px){
     .leftPart, .mainPart{
         min-height: calc(100vh - 7em);
+        max-height: 100%;
+    }
+    /*.menuBar li::before{
+        content:'';
+        width:1em;
+        display: inline-block;
+    }*/
+    .menuBar{
+        border-radius: 1em;
+    }
+    .menuBar li{
+        margin-left: 1.5em!important;
     }
 }
 .leftPart, .mainPart{
@@ -58,24 +80,25 @@ h1{
     width:80%;
 }
 .leftPart{
-    width:calc(20% - 10px);
+    width: calc(20% - 10px - 1em);
     vertical-align: top;
+    margin-left: 1em;
 }
 .post{
     display: block;
     margin: 1em;
-    background-color: #C7F6FF;
+    background-color: #8DBADA;
     padding: 1em;
-    border-radius: 0.2em;
+    border-radius: 0.7em;
 }
 .menuBar li{
     display: block;
-    background-color: #426BF4;
     color: white;
     padding: .5em;
 }
 .menuBar{
     padding: 0;
+    background-color: #1C75EB;
 }
 .noLnk{
     color:inherit;
@@ -99,10 +122,10 @@ img{
     max-height: 10em;
 }
 .tutor{
-    background-color: aquamarine;
+    background-color: #8DBADA;
     padding: 1em;
     margin: 1em;
-    border-radius: 0.3em;
+    border-radius: 0.7em;
 }
 .classAvatar {
     height: 2em;

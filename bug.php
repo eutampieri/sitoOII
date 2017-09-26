@@ -148,8 +148,8 @@ for($i=0;$i<count($fixes);$i++){
 		</h1>
 		<div class="leftPart"></div>
 		<div class="mainPart">
+			<a href="bugdb.php" class="button">Indietro</a>
 			<div class="post">
-				<a href="bugdb.php" class="button">Indietro</a>
 				<h2>Problema</h2>
 				<table>
 					<tr>
