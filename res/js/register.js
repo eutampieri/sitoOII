@@ -12,13 +12,13 @@ function checkPassword()
 
 function checkUser()
 {
-    var username = document.getElementById("userCMS");
-    var password = document.getElementById("passwordCMS");
+    var username = document.getElementById("userCMS").value;
+    var password = document.getElementById("passwordCMS").value;
     var query = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
     
     document.getElementById("cmsStatus").src = "res/loading.gif";
     
-    postUrl(urlBN() + "res/checkuser.php",
+    postUrl(urlBN() + "res/checkUser.php",
             function()
             {
                 var response = JSON.parse(this.responseText);
