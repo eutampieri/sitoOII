@@ -20,7 +20,7 @@
 
 		function updateTags() {
 			var ajax = new XMLHttpRequest();
-			ajax.open("GET", "act.php?problema=" + document.getElementById("affects").value, true);
+			ajax.open("GET", "res/act.php?problema=" + document.getElementById("affects").value, true);
 			ajax.onload = function () {
 				var list = JSON.parse(ajax.responseText);
 				tags.list = list;
@@ -30,7 +30,7 @@
 
 		function sAffects() {
 			var ajax = new XMLHttpRequest();
-			ajax.open("GET", "ac.php?term=" + document.getElementById("affects").value, true);
+			ajax.open("GET", "res/ac.php?term=" + document.getElementById("affects").value, true);
 			ajax.onload = function () {
 				var list = JSON.parse(ajax.responseText);
 				affects.list = list;
