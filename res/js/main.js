@@ -18,7 +18,7 @@ function urlBN(){
     return location.protocol+"//"+window.location.hostname+document.location.pathname.replace(tmp[tmp.length-1],"");
 }
 function loadSideBar(){
-    getUrl(urlBN()+"menu.html",function(){
+    getUrl(urlBN()+"res/menu.html",function(){
         document.getElementsByClassName("leftPart")[0].innerHTML=this.responseText;
     });
 }

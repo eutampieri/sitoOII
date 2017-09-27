@@ -16,11 +16,14 @@ function loadUserSearch(n){
             for(var i=0;i<dati.length;i++){
                 utenti.push([dati[i].first_name + " " + dati[i].last_name, dati[i].username]);
             }
+            document.getElementById("tutor"+n.toString()).disabled=false;
         });
     }
-    new Awesomeplete(document.getElementById("tutor"+n.toString()),{list:utenti});
+    new Awesomplete(document.getElementById("tutor"+n.toString()),{list:utenti});
 }
 function loadWrapper(){
-    load();
+    getUrl(urlBN()+"menu.html",function(){
+        document.getElementsByClassName("leftPart")[0].innerHTML=this.responseText;
+    });
     loadUserSearch(nTutor);
 }

@@ -32,13 +32,17 @@ else{
         <script src="js/main.js"></script>
         <script src="js/setup.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/awesomplete.css" />
+	    <script src="js/awesomplete.min.js" async></script>
 	    <title>Configurazione sito allenamenti OII</title>
     </head>
-    <body>
+    <body onload="loadWrapper()">
         <h1>Configurazione iniziale</h1>
         <div class="leftPart"></div>
         <div class="mainPart">
-            <h2>Tutor</h2>
-            <input id="tutor0">
+            <div class="post">
+                <h2>Tutor</h2>
+                <input id="tutor0" disabled>
+            </div>
         </div>
 </html>
