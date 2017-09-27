@@ -30,9 +30,9 @@ h1{
         width: calc(100% - 2em)!important;
         margin-right: 1em;
     }
-    .menuBar{
+    /*.menuBar{
         border-radius: .5em;
-    }
+    }*/
     .menuBar li{
         text-align: center;
         /*background-color: #1C75EB;*/
@@ -65,9 +65,9 @@ h1{
         width:1em;
         display: inline-block;
     }*/
-    .menuBar{
+    /*.menuBar{
         border-radius: 1em;
-    }
+    }*/
     .menuBar li{
         margin-left: 1.5em!important;
     }
@@ -95,10 +95,13 @@ h1{
     display: block;
     color: white;
     padding: .5em;
+    margin: .5em;
+    background-color: #1C75EB;
+    border-radius: 0.5em;
 }
 .menuBar{
     padding: 0;
-    background-color: #1C75EB;
+    /*background-color: #1C75EB;*/
 }
 .noLnk{
     color:inherit;
