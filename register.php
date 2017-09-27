@@ -35,7 +35,7 @@ if($createDB)
     $stmt->execute();
 }
 $datiUtente=getUserData($_POST["telefono"]);
-$qry="INSERT INTO Utenti VALUES(:username , :password , :userCMS , :passwordCMS , :email , :telefono , :nome , :cognome , :classe)";
+$qry="INSERT INTO Utenti VALUES(:username , :password , :userCMS  , :email , :telefono , :nome , :cognome , :classe)";
 $stmt=$database->prepare($qry);
 $stmt->bindParam(':username', $_POST["username"]);
 $stmt->bindParam(':password', password_hash($_POST["password"], PASSWORD_DEFAULT));
