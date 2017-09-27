@@ -16,7 +16,7 @@ function getUserData($phone)
     }
 }
 $query = <<<EOF
-CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, CMSPwd TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT);
+CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT);
 CREATE TABLE Posts(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT);
 CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)";
 CREATE TABLE Notifiche(Username TEXT, JSON TEXT);
@@ -37,9 +37,8 @@ $datiUtente=getUserData($_POST["telefono"]);
 $qry="INSERT INTO Utenti VALUES(:username , :password , :userCMS , :passwordCMS , :email , :telefono , :nome , :cognome , :classe)";
 $stmt=$database->prepare($qry);
 $stmt->bindParam(':username', $_POST["username"]);
-$stmt->bindParam(':password', $_POST["password"]);
+$stmt->bindParam(':password', password_hash($_POST["password"], PASSWORD_DEFAULT));
 $stmt->bindParam(':userCMS', $_POST["userCMS"]);
-$stmt->bindParam(':passwordCMS', $_POST["passwordCMS"]);
 $stmt->bindParam(':email', $_POST["email"]);
 $stmt->bindParam(':telefono', $_POST["telefono"]);
 $stmt->bindParam(':nome', $datiUtente["nome"]);
