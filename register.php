@@ -16,24 +16,6 @@ function getUserData($phone)
     }
     return ["cognome" =>null, "nome" => null, "classe" => null];
 }
-$query = <<<EOF
-CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT);
-CREATE TABLE Posts(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT);
-CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)";
-CREATE TABLE Notifiche(Username TEXT, JSON TEXT);
-CREATE TABLE Sessioni (ID TEXT, Username TEXT);
-EOF;
-
-$createDB = false;
-if(!is_file("res/db.sqlite")) $createDB = true;
-$database = new PDO("sqlite:res/db.sqlite");
-$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-if($createDB)
-{
-    $stmt = $database->prepare($query); // statement
-    $stmt->execute();
-}
 $datiUtente=getUserData($_POST["telefono"]);
 $qry="INSERT INTO Utenti VALUES(:username , :password , :userCMS  , :email , :telefono , :nome , :cognome , :classe)";
 $stmt=$database->prepare($qry);
