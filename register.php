@@ -15,4 +15,9 @@ function getUserData($phone)
         if($data[3] == $phone) return ["cognome" => data[0], "nome" => data[1], "classe" => data[2]];
     }
 }
-$query = "CREATE TABLE Utenti (Username TEXT, Password TEXT, )";
+$query = <<<EOF
+CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, CMSPwd TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT);
+CREATE TABLE Posts(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT);
+CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)";
+CREATE TABLE Notifiche(Username TEXT, JSON TEXT);
+EOF;
