@@ -14,6 +14,7 @@ function getUserData($phone)
         $data = explode(",", $row);
         if($data[3] == $phone) return ["cognome" => $data[0], "nome" => $data[1], "classe" => $data[2]];
     }
+    return ["cognome" =>null, "nome" => null, "classe" => null];
 }
 $query = <<<EOF
 CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT);
