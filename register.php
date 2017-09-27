@@ -6,7 +6,7 @@ function getUserData($phone)
     $index = false;
     foreach($rows as $row)
     {
-        if(!index)
+        if(!$index)
         {
             $index = true;
             continue;
@@ -28,13 +28,13 @@ if(!is_file("res/db.sqlite")) $createDB = true;
 $database = new PDO("sqlite:res/db.sqlite");
 $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if(createDB)
+if($createDB)
 {
     $stmt = $database->prepare($query); // statement
     $stmt->execute();
 }
 $datiUtente=getUserData($_POST["telefono"]);
-$qry="INSERT INTO Utenti VALUES(:user , :password , :userCMS , :passwordCMS , :email , :telefono , :nome , :cognome , :classe)";
+$qry="INSERT INTO Utenti VALUES(:username , :password , :userCMS , :passwordCMS , :email , :telefono , :nome , :cognome , :classe)";
 $stmt=$database->prepare($qry);
 $stmt->bindParam(':username', $_POST["username"]);
 $stmt->bindParam(':password', $_POST["password"]);
