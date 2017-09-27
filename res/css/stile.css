@@ -68,9 +68,6 @@ h1{
     .menuBar{
         border-radius: 1em;
     }
-    .menuBar li{
-        margin-left: 1.5em!important;
-    }
 }
 .leftPart, .mainPart{
     display: inline-block;
@@ -95,6 +92,11 @@ h1{
     display: block;
     color: white;
     padding: .5em;
+    margin: .5em;
+    background-color: #2E80ED;
+    border-radius: 0.5em;
+    border: .1em solid #0d4998;
+    box-shadow: .25em .25em .5em #0d4998;
 }
 .menuBar{
     padding: 0;
