@@ -1,2 +1,2 @@
 <?php
-$qry="CREATE TABLE Utenti "
+$qry="CREATE TABLE Utenti (Username TEXT, Password TEXT)"

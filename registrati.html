@@ -1,9 +1,9 @@
-3<head>
+<head>
 	<title> Sito allenamenti OII - login </title>
-	<link rel="stylesheet" href="stile.css" type="text/css">
 	<link rel="stylesheet" href="res/css/stile.css" type="text/css">
     <script type="text/javascript" src="res/js/main.js"></script>
     <script type="text/javascript" src="res/js/register.js"></script>
+    <script type="text/javascript" src="res/js/zxcvbn.js"></script>
 </head>
 
 <body onload="load()">
@@ -12,15 +12,15 @@
         <ul class="menuBar"></div>
     <div class="mainPart">
         <form class="post" action="register.php" method="POST">
-            Nome utente: <input type="text" name="username"><br>
-            Password: <input id="pwd1" type="password" name="password"><br>
-            Password: <input id="pwd2" onkeyup="checkPassword()" type="password"><br>
+            Nome utente: <input type="text" onchange = "deDupeUser()" id="userName" name="username"><img id="userStatus" class="icons"><br>
+            Password: <input id="pwd1" onkeyup="checkPassword()" type="password" name="password"><br>
+            Ripeti la password: <input id="pwd2" onkeyup="checkPassword()" type="password"><br>
+            <div class="strengthBar"><div style="height: 0.5em;" id="meter"></div></div>
             <p style="color:darkred" id="pwdMisMatch" class="nascosto">Le password non corrispondono</p>
             Username CMS: <input onchange="checkUser()" type = "text" id="userCMS" name="userCMS"><br>
-            Password CMS: <input onchange="checkUser()" type = "password" id="passwordCMS"><img id="cmsStatus" class="icon"><br>
-            Come vuoi ricevere le notifiche e i messaggi dal sito?<br>
-            <input type="radio" name="contatto" value="email">E-mail: <input type="email" name="email"><br>
-            <input type="radio" name="contatto" value="email">Telegram<br>
+            Password CMS: <input onchange="checkUser()" type = "password" id="passwordCMS"><img id="cmsStatus" class="icons"><br>
+            E-mail: <input type="email" name="email" required><br>
+            Cellulare: <input type="tel" name="telefono" required><br>
             <input type="submit" id="invia" value="Registrati">
         </form>
     </div>
