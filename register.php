@@ -12,7 +12,7 @@ function getUserData($phone)
             continue;
         }
         $data = explode(",", $row);
-        if($data[3] == $phone) return ["cognome" => data[0], "nome" => data[1], "classe" => data[2]];
+        if($data[3] == $phone) return ["cognome" => $data[0], "nome" => $data[1], "classe" => $data[2]];
     }
 }
 $query = <<<EOF
