@@ -1,7 +1,7 @@
 <?php
 function getUserData($phone)
 {
-    $csv = file_get_contents("https://docs.google.com/spreadsheets/d/1Iv8y74oteOicW8DCUi7BEHrMfldZZTHeZy0GmOao2aA/export?format=csv&id=1Iv8y74oteOicW8DCUi7BEHrMfldZZTHeZy0GmOao2aA");
+    $csv = file_get_contents(file_get_contents("res/gSheet.apikey"));
     $rows = explode("\n", $csv);
     $index = false;
     foreach($rows as $row)
