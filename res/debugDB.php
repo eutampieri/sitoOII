@@ -20,7 +20,7 @@ if(!$enabled){
     die();
 }
 echo '<h1>Dati in '.$_GET["db"].'.sqlite'."</h1>\n";
-$database = new PDO("sqlite:".str_replace(".",'', ('/','',$_GET["db"])).'.sqlite');
+$database = new PDO("sqlite:".str_replace(".",'', str_replace('/','',$_GET["db"])).'.sqlite');
 $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $qry="SELECT name FROM sqlite_master where type='table';";
 $stmt=$database->prepare($qry);
