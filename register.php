@@ -21,3 +21,16 @@ CREATE TABLE Posts(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT);
 CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)";
 CREATE TABLE Notifiche(Username TEXT, JSON TEXT);
 EOF;
+
+$createDB = false;
+if(!is_file("res/db.sqlite")) $createDB = true;
+$database = new PDO("sqlite:res/db.sqlite");
+$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+if(createDB)
+{
+    $stmt = $database->prepare($query); // statement
+    $stmt->execute();
+}
+
+// $stmt->bindParam(parameter, variable);
