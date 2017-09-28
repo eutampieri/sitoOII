@@ -8,7 +8,7 @@ function server($mail){
 	/*if($host=="etcloud.ddns.net"||$host=="serverseutampieri.ddns.net"){
 		return array('server' => 'etcloud.ddns.net', 'porta' => 465,'user'=>'etnotify','da'=>'etnotify@etcloud.ddns.net');
 	}*/
-	return array('server' => 'smtp-mail.outlook.com', 'porta' => 587,'user'=>'etsoftware@outlook.com','da'=>'no-reply.etsoftware@outlook.it');
+	return array('server' => 'smtp-mail.outlook.com', 'porta' => 587,'user'=>'YourPreetyEmail','da'=>'no-reply.etsoftware@outlook.it');
 }
 include("res/class.phpmailer.php");
 include("res/class.smtp.php");
@@ -52,7 +52,7 @@ if(isset($_POST["action"])&&$_POST["action"]=="risolvi"){
 		  $mail->Host       = $server["server"];
 		  $mail->Port       = $server["porta"];
 		  $mail->Username   = $server["user"];
-		  $mail->Password   = "hahaNessuna";
+		  $mail->Password   = "YourPreetyPassword";
 		  $mail->AddAddress($mailNotify, $mailID[0]["creator"]);
 		  $mail->SetFrom($server["da"], 'Bugs OIS');
 		//  $mail->AddAddress($_POST['email'], $_POST['nome']);
