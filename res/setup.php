@@ -27,7 +27,7 @@ else{
 }*/
 ?>
 <html>
-    <<head>
+    <head>
         <link rel="stylesheet" type="text/css" href="css/stile.css">
         <script src="js/main.js"></script>
         <script src="js/setup.js"></script>
@@ -42,7 +42,7 @@ else{
         <div class="mainPart">
             <div class="post">
                 <h2>Tutor</h2>
-                <input id="tutor0" disabled>
+                <input id="tutor0" placeholder="Ricerca per nome o username" disabled>
             </div>
         </div>
 </html>

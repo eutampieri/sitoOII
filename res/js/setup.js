@@ -15,6 +15,7 @@ function loadUserSearch(n){
             dati=JSON.parse(r).users;
             for(var i=0;i<dati.length;i++){
                 utenti.push([dati[i].first_name + " " + dati[i].last_name, dati[i].username]);
+                utenti.push([dati[i].username, dati[i].username])
             }
             document.getElementById("tutor"+n.toString()).disabled=false;
         });
@@ -23,7 +24,7 @@ function loadUserSearch(n){
 }
 function loadWrapper(){
     getUrl(urlBN()+"menu.html",function(){
-        document.getElementsByClassName("leftPart")[0].innerHTML=this.responseText;
+        document.getElementsByClassName("leftPart")[0].innerHTML=this.responseText.replace(/href="/g,'href="../');
     });
     loadUserSearch(nTutor);
 }
