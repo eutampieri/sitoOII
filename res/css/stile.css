@@ -99,7 +99,7 @@ h1{
     box-shadow: .25em .25em .5em #0d4998;
 }
 .menuBar{
-    padding: 0;
+    padding: .25em 0 .25em 0;
     background-color: #1C75EB;
 }
 .noLnk{
