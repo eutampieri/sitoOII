@@ -52,7 +52,7 @@ if(isset($_POST["action"])&&$_POST["action"]=="risolvi"){
 		  $mail->Host       = $server["server"];
 		  $mail->Port       = $server["porta"];
 		  $mail->Username   = $server["user"];
-		  $mail->Password   = "eu@123tampieri";
+		  $mail->Password   = "hahaNessuna";
 		  $mail->AddAddress($mailNotify, $mailID[0]["creator"]);
 		  $mail->SetFrom($server["da"], 'Bugs OIS');
 		//  $mail->AddAddress($_POST['email'], $_POST['nome']);
