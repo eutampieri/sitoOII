@@ -1,12 +1,13 @@
 <?php
 $query = <<<EOF
 CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT);
-CREATE TABLE Posts(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT);
+CREATE TABLE Post(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT);
 CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)";
 CREATE TABLE Notifiche(Username TEXT, JSON TEXT);
 CREATE TABLE Sessioni (ID TEXT, Username TEXT);
 CREATE TABLE Tutor (CMSUser TEXT, Nome TEXT, Cognome TEXT, Classe TEXT);
 CREATE TABLE APIKeys (Servizio TEXT, Chiave TEXT);
+CREATE TABLE RifClassifica (User TEXT);
 EOF;
 
 /*$createDB = false;
@@ -40,9 +41,20 @@ else{
         <h1>Configurazione iniziale</h1>
         <div class="leftPart"></div>
         <div class="mainPart">
-            <div class="post">
+            <form class="post">
                 <h2>Tutor</h2>
-                <input id="tutor0" placeholder="Ricerca per nome o username" disabled>
-            </div>
+                <input type="hidden" id="tutors" name="tutors">
+                <ul id="listaTutor">
+                    <li><input id="tutor0" onchange="serializeTutors()" placeholder="Ricerca per nome o username" disabled></li>
+                </ul>
+                <a class="button" onclick="addTutor()">Aggiungi un altro tutor</a>
+                <h2>Classifica</h2>
+                <p>&Egrave; possibile specificare gli utenti da includere nella classifica anche se non sono registrati</p>
+                <input type="hidden" id="classpdr" name="classpdr">
+                <ul id="listaPDR">
+                    <li><input id="PDR0" onchange="serializePDR()" placeholder="Ricerca per nome o username" disabled></li>
+                </ul>
+                <a class="button" onclick="addPDR()">Aggiungi un altro utente</a>
+            </form>
         </div>
 </html>
