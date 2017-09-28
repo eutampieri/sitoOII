@@ -1,2 +1,4 @@
 *.sqlite
 *.tgbotkey
+*.apikey
+.DS_Store

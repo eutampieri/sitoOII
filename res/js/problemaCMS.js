@@ -13,7 +13,7 @@ function getTaskUrl(task){
         getUrlPromise(urlBN()+"res/cmsTaskApi.php?task="+encodeURIComponent(task)).then(function(tskJson){
             tskDta=JSON.parse(tskJson);
             url="https://cms.di.unipi.it/api/files/"+tskDta.statements.it+"/"+task+".pdf";
+            resolve(url);
         });
-        resolve(url);
     });
 }
