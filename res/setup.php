@@ -69,7 +69,7 @@ else{
         <h1>Configurazione iniziale</h1>
         <div class="leftPart"></div>
         <div class="mainPart">
-            <form class="post">
+            <form class="post" method="POST">
                 <h2>Tutor</h2>
                 <input type="hidden" id="tutors" name="tutors">
                 <ul id="listaTutor">
@@ -91,6 +91,7 @@ else{
                 <h2>Telegram</h2>
                 Chiave del bot amministratore del canale: <input type="text" name="tg.bot"><br>
                 Nome del canale: <input type="text" name="tg.ch"><br>
+                <input type="submit" value="Salva">
             </form>
         </div>
 </html>
