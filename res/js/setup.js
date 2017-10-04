@@ -29,6 +29,9 @@ function loadUserSearch(n){
             document.getElementById("tutor"+n.toString()).disabled=false;
         });
     }
+    else{
+        document.getElementById("tutor"+n.toString()).disabled=false;
+    }
     new Awesomplete(document.getElementById("tutor"+n.toString()),{list:utenti});
 }
 function loadPDRUserSearch(n){
