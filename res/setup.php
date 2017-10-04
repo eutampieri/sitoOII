@@ -21,15 +21,15 @@ if($createDB)
     $stmt->execute();
 }
 elseif(isset($_POST["action"])){
-    $listaTutor=json_decode($_POST["tutors"]);
+    $listaTutor=json_decode($_POST["tutors"],true);
     $qry="INSERT INTO Tutor VALUES (:u);";
     foreach ($listaTutor as $t) {
         $stmt=$database->prepare($qry);
         $stmt->bindParam(":u", $t);
         $stmt->execute();
     }
-    $listaPDR=json_decode($_POST["classpdr"]);
-    $qry="INSERT INTO RifClassifica VALUES (:u);"
+    $listaPDR=json_decode($_POST["classpdr"],true);
+    $qry="INSERT INTO RifClassifica VALUES (:u);";
     foreach ($listaPDR as $t) {
         $stmt=$database->prepare($qry);
         $stmt->bindParam(":u", $t);
