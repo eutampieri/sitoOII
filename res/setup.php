@@ -22,7 +22,7 @@ if($createDB)
 }
 elseif(isset($_POST["action"])){
     $listaTutor=json_decode($_POST["tutors"]);
-    $qry="INSERT INTO Tutor VALUES (:u);"
+    $qry="INSERT INTO Tutor VALUES (:u);";
     foreach ($listaTutor as $t) {
         $stmt=$database->prepare($qry);
         $stmt->bindParam(":u", $t);
