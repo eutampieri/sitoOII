@@ -17,8 +17,10 @@ $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if($createDB)
 {
-    $stmt = $database->prepare($query); // statement
-    $stmt->execute();
+    foreach(explode('\n',$query) as $q){
+        $stmt = $database->prepare($q); // statement
+        $stmt->execute();
+    }
 }
 elseif(isset($_POST["action"])){
     $listaTutor=json_decode($_POST["tutors"],true);
@@ -35,21 +37,30 @@ elseif(isset($_POST["action"])){
         $stmt->bindParam(":u", $t);
         $stmt->execute();
     }
-    $qry=<<<EOF
-    INSERT INTO APIKeys VALUES ("Mail.user", :mu);
-    INSERT INTO APIKeys VALUES ("Mail.pwd", :mp);
-    INSERT INTO APIKeys VALUES ("Mail.SMTP", :ms);
-    INSERT INTO APIKeys VALUES ("Mail.porta", :mt);
-    INSERT INTO APIKeys VALUES ("TG.botKey", :tb);
-    INSERT INTO APIKeys VALUES ("TG.ch", :tc);
-EOF;
+    $qry='INSERT INTO APIKeys VALUES ("Mail.user", :mu);';
     $stmt=$database->prepare($qry);
-    $stmt->bindParam(":mu", $_POST["mail.user"]);
+    $stmt->bindParam(":mu", $_POST["mail.user"]);    
+    $stmt->execute();
+    $qry='INSERT INTO APIKeys VALUES ("Mail.pwd", :mp);';
+    $stmt=$database->prepare($qry);
     $stmt->bindParam(":mp", $_POST["mail.pwd"]);
-    $stmt->bindParam(":ms", $_POST["mail.smtp"]);
+    $stmt->execute();
+    $qry='INSERT INTO APIKeys VALUES ("Mail.SMTP", :ms);';
+    $stmt=$database->prepare($qry);
+    $stmt->bindParam(":mp", $_POST["mail.smtp"]);
+    $stmt->execute();
+    $qry='INSERT INTO APIKeys VALUES ("Mail.porta", :mt);';
+    $stmt=$database->prepare($qry);
     $stmt->bindParam(":mt", $_POST["mail.porta"]);
+    $stmt->execute();
+    $qry='INSERT INTO APIKeys VALUES ("TG.botKey", :tb);';
+    $stmt=$database->prepare($qry);
     $stmt->bindParam(":tb", $_POST["tg.bot"]);
+    $stmt->execute();
+    $qry='INSERT INTO APIKeys VALUES ("TG.ch", :tc);';
+    $stmt=$database->prepare($qry);
     $stmt->bindParam(":tc", $_POST["tg.ch"]);
+    $stmt->execute();
 }
 else{
     die();
