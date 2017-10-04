@@ -15,7 +15,7 @@ th{
 </head>
 <body>
 <?php
-$enabled=true;
+$enabled=false;
 if(!$enabled){
     die();
 }
