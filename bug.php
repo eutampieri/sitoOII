@@ -8,7 +8,7 @@ function server($mail){
 	/*if($host=="etcloud.ddns.net"||$host=="serverseutampieri.ddns.net"){
 		return array('server' => 'etcloud.ddns.net', 'porta' => 465,'user'=>'etnotify','da'=>'etnotify@etcloud.ddns.net');
 	}*/
-	return array('server' => 'SMP.YourMailserver.com', 'porta' => 587,'user'=>'YourPreetyEmail','da'=>'no-reply.preety@mail.it');
+return array('server' => 'smtp-mail.outlook.com', 'porta' => 587,'user'=>'YourPreetyEmail','da'=>'no-reply.etsoftware@outlook.it');
 }
 include("res/class.phpmailer.php");
 include("res/class.smtp.php");
