@@ -12,7 +12,7 @@ EOF;
 
 $createDB = false;
 if(!is_file("db.sqlite")) $createDB = true;
-$database = new PDO("sqlite:res/db.sqlite");
+$database = new PDO("sqlite:db.sqlite");
 $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if($createDB)
