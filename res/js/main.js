@@ -7,6 +7,15 @@ function getUrlP(url, func) {
     };
     webrequest.send(null);});
 }
+function getUrlPromise(url) {
+    return new Promise(function(resolve,reject){
+    var webrequest = new XMLHttpRequest();
+    webrequest.open('GET', url, true);
+    webrequest.onload=function(){
+        resolve(webrequest.responseText);
+    };
+    webrequest.send(null);});
+}
 function getUrl(url,func){
     var webrequest = new XMLHttpRequest();
     webrequest.open('GET', url, true);

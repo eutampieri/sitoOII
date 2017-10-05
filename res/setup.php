@@ -8,6 +8,7 @@ CREATE TABLE Sessioni (ID TEXT, Username TEXT)
 CREATE TABLE Tutor (CMSUser TEXT)
 CREATE TABLE APIKeys (Servizio TEXT, Chiave TEXT)
 CREATE TABLE RifClassifica (CMSUser TEXT)
+CREATE TABLE Eventi (Descrizione TEXT, Inizio INTEGER, Fine INTEGER, Tipo TEXT);
 EOF;
 
 $createDB = false;
