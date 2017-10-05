@@ -17,13 +17,12 @@
     return ["cognome" =>null, "nome" => null, "classe" => null];
 }*/
 $datiUtente=getUserData($_POST["telefono"]);
-$qry="INSERT INTO Utenti VALUES(:username , :password , :userCMS  , :email , :telefono , :nome , :cognome , :classe)";
+$qry="INSERT INTO Utenti VALUES(:username , :password , :userCMS  , :email , :nome , :cognome , :classe)";
 $stmt=$database->prepare($qry);
 $stmt->bindParam(':username', $_POST["username"]);
 $stmt->bindParam(':password', password_hash($_POST["password"], PASSWORD_DEFAULT));
 $stmt->bindParam(':userCMS', $_POST["userCMS"]);
 $stmt->bindParam(':email', $_POST["email"]);
-$stmt->bindParam(':telefono', $_POST["telefono"]);
 $stmt->bindParam(':nome', $_POST["nome"]);
 $stmt->bindParam(':cognome', $_POST["cognome"]);
 $stmt->bindParam(':classe', $_POST["classe"]);
