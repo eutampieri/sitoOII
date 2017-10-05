@@ -1,0 +1,20 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "options": {
+        "cwd": "${workspaceRoot}"
+    },
+    "tasks": [
+        {
+            "taskName": "Crea PDF da HTML",
+            "type": "shell",
+            "command": "enscript ${relativeFile} --color -Ehtml -M A4 --margins=50:50:50:50 -o -|ps2pdf - ${fileBasenameNoExtension}.pdf",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

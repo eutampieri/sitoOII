@@ -133,3 +133,11 @@ img{
     height: 2em;
     margin-right: 1em;
 }
+.nascosto{
+    display: none;
+}
+.strengthBar{
+    width:50%;
+    border:1px solid #011622;
+    border-radius:.5em
+}
