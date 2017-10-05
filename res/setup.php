@@ -1,13 +1,13 @@
 <?php
 $query = <<<EOF
-CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT);
-CREATE TABLE Post(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT);
-CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)";
-CREATE TABLE Notifiche(Username TEXT, JSON TEXT);
-CREATE TABLE Sessioni (ID TEXT, Username TEXT);
-CREATE TABLE Tutor (CMSUser TEXT);
-CREATE TABLE APIKeys (Servizio TEXT, Chiave TEXT);
-CREATE TABLE RifClassifica (CMSUser TEXT);
+CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT)
+CREATE TABLE Post(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT)
+CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)
+CREATE TABLE Notifiche(Username TEXT, JSON TEXT)
+CREATE TABLE Sessioni (ID TEXT, Username TEXT)
+CREATE TABLE Tutor (CMSUser TEXT)
+CREATE TABLE APIKeys (Servizio TEXT, Chiave TEXT)
+CREATE TABLE RifClassifica (CMSUser TEXT)
 EOF;
 
 $createDB = false;
@@ -17,8 +17,8 @@ $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if($createDB)
 {
-    foreach(explode('\n',$query) as $q){
-        $stmt = $database->prepare($q); // statement
+    foreach(explode("\n",$query) as $q){
+        $stmt = $database->prepare($q);
         $stmt->execute();
     }
 }
@@ -39,27 +39,27 @@ elseif(isset($_POST["action"])){
     }
     $qry='INSERT INTO APIKeys VALUES ("Mail.user", :mu);';
     $stmt=$database->prepare($qry);
-    $stmt->bindParam(":mu", $_POST["mail.user"]);    
+    $stmt->bindParam(":mu", $_POST["mail_user"]);    
     $stmt->execute();
-    $qry='INSERT INTO APIKeys VALUES ("Mail.pwd", :mp);';
+    $qry='INSERT INTO APIKeys VALUES ("Mail_pwd", :mp);';
     $stmt=$database->prepare($qry);
-    $stmt->bindParam(":mp", $_POST["mail.pwd"]);
+    $stmt->bindParam(":mp", $_POST["mail_pwd"]);
     $stmt->execute();
     $qry='INSERT INTO APIKeys VALUES ("Mail.SMTP", :ms);';
     $stmt=$database->prepare($qry);
-    $stmt->bindParam(":mp", $_POST["mail.smtp"]);
+    $stmt->bindParam(":ms", $_POST["mail_smtp"]);
     $stmt->execute();
     $qry='INSERT INTO APIKeys VALUES ("Mail.porta", :mt);';
     $stmt=$database->prepare($qry);
-    $stmt->bindParam(":mt", $_POST["mail.porta"]);
+    $stmt->bindParam(":mt", $_POST["mail_porta"]);
     $stmt->execute();
     $qry='INSERT INTO APIKeys VALUES ("TG.botKey", :tb);';
     $stmt=$database->prepare($qry);
-    $stmt->bindParam(":tb", $_POST["tg.bot"]);
+    $stmt->bindParam(":tb", $_POST["tg_bot"]);
     $stmt->execute();
     $qry='INSERT INTO APIKeys VALUES ("TG.ch", :tc);';
     $stmt=$database->prepare($qry);
-    $stmt->bindParam(":tc", $_POST["tg.ch"]);
+    $stmt->bindParam(":tc", $_POST["tg_ch"]);
     $stmt->execute();
 }
 else{
@@ -81,6 +81,7 @@ else{
         <div class="leftPart"></div>
         <div class="mainPart">
             <form class="post" method="POST">
+                <input type="hidden" name="action" value="setup">
                 <h2>Tutor</h2>
                 <input type="hidden" id="tutors" name="tutors">
                 <ul id="listaTutor">
@@ -95,13 +96,13 @@ else{
                 </ul>
                 <a class="button" onclick="addPDR()">Aggiungi un altro utente</a>
                 <h2>Account di posta elettronica</h2>
-                Username: <input type="email" name="mail.user"><br>
-                Password: <input type="password" name="mail.pwd"><br>
-                Server SMTP: <input type="text" name="mail.smtp"><br>
-                Porta server SMTP: <input type="text" name="mail.porta"><br>
+                Username: <input type="text" name="mail_user"><br>
+                Password: <input type="password" name="mail_pwd"><br>
+                Server SMTP: <input type="text" name="mail_smtp"><br>
+                Porta server SMTP: <input type="text" name="mail_porta"><br>
                 <h2>Telegram</h2>
-                Chiave del bot amministratore del canale: <input type="text" name="tg.bot"><br>
-                Nome del canale: <input type="text" name="tg.ch"><br>
+                Chiave del bot amministratore del canale: <input type="text" name="tg_bot"><br>
+                Nome del canale: <input type="text" name="tg_ch"><br>
                 <input type="submit" value="Salva">
             </form>
         </div>
