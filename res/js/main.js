@@ -1,3 +1,8 @@
+var centroNotifiche = null;
+function getFragment(){
+	var tmp=location.hash;
+	return tmp.replace('#','');
+}
 function getUrlP(url, func) {
     return new Promise(function(resolve,reject){
     var webrequest = new XMLHttpRequest();
@@ -39,12 +44,24 @@ function urlBN(){
     if (tmp[tmp.length - 2] == "admin" || tmp[tmp.length - 2] == "res") bn=bn.replace("/"+tmp[tmp.length-2],"");
     return bn;
 }
-function loadSideBar(){
+function loadSideBar() {
+    if (typeof Notyf != "undefined") {
+        centroNotifiche = new Notyf();
+    }
+    if (centroNotifiche !== null && getFragment()!="") {
+        var msg = getFragment().split("&");
+        if (msg[0] == "ok") {
+            centroNotifiche.confirm(decodeURIComponent(msg[1]));
+        }
+        else {
+            centroNotifiche.alert(decodeURIComponent(msg[1]));
+        }
+    }
     getUrlPromise(urlBN() + "res/menu.html").then(function (r) {
         document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());;
         
     }).then(function () {
-        return getUrlPromise(urlBN() + "res/api.php?isTutor");
+        return getUrlPromise(urlBN() + "res/api.php?action=isTutor");
     }).then(function (r) {
         if (r == "1") {
             return getUrlPromise(urlBN() + "res/adminMenu.html");

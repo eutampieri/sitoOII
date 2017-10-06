@@ -11,7 +11,7 @@ function waitForUsers(){
 }
 function loadUserSearch(n){
     if(utenti.length==0){
-        getUrlPromise(urlBN() + "api.php?action=classifica& first=0 & last=200").then(function(r){
+        getUrlPromise(urlBN() + "res/api.php?action=classifica&first=0&last=200").then(function(r){
             dati=JSON.parse(r).users;
             for(var i=0;i<dati.length;i++){
                 utenti.push([dati[i].first_name + " " + dati[i].last_name, dati[i].username]);
@@ -30,7 +30,7 @@ function loadPDRUserSearch(n){
     new Awesomplete(document.getElementById("PDR"+n.toString()),{list:utenti});
 }
 function loadWrapper() {
-    laodSideBar();
+    loadSideBar();
     loadUserSearch(nTutor);
     loadPDRUserSearch(nPDR);
 }

@@ -2,14 +2,12 @@ var inizio = new Date;
 var fine = new Date;
 let cfields = ["inizio", "fine", "descrizione"];
 let qfields = ["descrizione", "tipo"];
-var centroNotifiche;
 function clearEvents() {
     for (var f in cfields) {
         document.getElementById(cfields[f]).value = "";
     }
 }
 function loadEv() {
-    centroNotifiche = new Notyf();
     loadSideBar();
     clearEvents();
     flatpickr(document.getElementById("inizio"), { time_24hr: true, enableTime: true, dateFormat: "d/m/Y H:i", onChange: function(a,b,c){inizio=a[0];} });

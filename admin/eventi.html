@@ -1,20 +1,22 @@
+<html>
+
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sito allenamenti OII</title>
-	<link rel="stylesheet" href="../res/css/stile.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sito allenamenti OII</title>
+    <link rel="stylesheet" href="../res/css/stile.css" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
-    <script src="https://unpkg.com/flatpickr"></script>    
+    <script src="https://unpkg.com/flatpickr"></script>
     <link rel="stylesheet" href="../res/css/notyf.min.css">
     <script type="text/javascript" src="../res/js/main.js"></script>
     <script type="text/javascript" src="../res/js/eventi.js"></script>
 </head>
 
 <body onload="loadEv()">
-	<h1>Lezioni e gare</h1>
-	<div class="leftPart">
-	</div>
-	<div class="mainPart">
-		<div class="post">
+    <h1>Lezioni e gare</h1>
+    <div class="leftPart">
+    </div>
+    <div class="mainPart">
+        <div class="post">
             <h2>Aggiungi evento</h2>
             Data e ora di inizio<input id="inizio"><br>
             Data e ora di fine<input id="fine"><br>
@@ -22,10 +24,12 @@
                 <option>Gara</option>
                 <option>Lezione</option>
             </select><br>
-            Descrizione:<textarea id="descrizione"></textarea>
+            Descrizione:
+            <textarea id="descrizione"></textarea>
             <a class="button cursoreMano" onclick="aggiungiEvento()">Aggiungi</a>
-		</div>
-	</div>	
+        </div>
+    </div>
     <script type="text/javascript" src="../res/js/notyf.min.js"></script>
 </body>
+
 </html>

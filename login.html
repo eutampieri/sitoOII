@@ -1,21 +1,26 @@
-<head> 
-	<title> Sito allenamenti OII - login </title>
-	<link rel="stylesheet" href="res/css/stile.css" type="text/css">
+<html>
+
+<head>
+    <title> Sito allenamenti OII - login </title>
+    <link rel="stylesheet" href="res/css/stile.css" type="text/css">
     <script type="text/javascript" src="res/js/main.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="res/css/notyf.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body onload="load()">
     <h1>Login</h1>
     <div class=leftPart>
-        <ul class="menuBar"></div>
+        <ul class="menuBar">
+    </div>
     <div class="mainPart">
-        <form class="post" method="POST">
+        <form class="post" method="POST" action="login.php">
             Nome utente: <input type="text" name="username"><br>
             Password: <input type="password" name="password"><br>
             <input type="submit" value="Entra">
         </form>
     </div>
-</div>
+    <script type="text/javascript" src="res/js/notyf.min.js"></script>
 </body>
+
+</html>
