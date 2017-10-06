@@ -17,7 +17,7 @@ switch ($azione) {
         $stmt=$database->prepare("SELECT * FROM Utenti WHERE Username = :u");
         $stmt->bindParam(':u', $_POST["username"]);
         $stmt->execute();
-        echo count($stmt->fetchAll(PDO::FETCH_ASSOC));
+        echo strval(count($stmt->fetchAll(PDO::FETCH_ASSOC)));
         break;
     case 'cmsUser':
         $data = array('action' => "login", 'username' =>$_POST["username"] , 'password'=>$_POST["password"], 'keep_signed' => false);
@@ -57,8 +57,24 @@ switch ($azione) {
         $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutors.CMSUser = Utenti.Username");
         $stmt->bindParam(":id", $_COOKIE["session"]);
         $stmt->execute();
-        echo count($stmt->fetchAll(PDO::FETCH_ASSOC));
+        echo strval(count($stmt->fetchAll(PDO::FETCH_ASSOC)));
         break;
+    case "addEvent":
+        $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutors.CMSUser = Utenti.Username");
+        $stmt->bindParam(":id", $_COOKIE["session"]);
+        $stmt->execute();
+        if(count($stmt->fetchAll(PDO::FETCH_ASSOC))==1){
+            $stmt->prepare("INSERT INTO Eventi VALUES (:d , :i , :f , :t )");
+            $stmt->bindParam(":d",$_POST["descrizione"]);
+            $stmt->bindParam(":i",$_POST["inizio"]);
+            $stmt->bindParam(":f",$_POST["fine"]);
+            $stmt->bindParam(":t",$_POST["tipo"]);
+            $stmt->execute();
+            echo "OK";
+        }
+        else{
+            echo "Non autorizzato";
+        }
     default:
         # code...
         break;

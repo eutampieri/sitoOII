@@ -16,6 +16,17 @@ function getUrlPromise(url) {
     };
     webrequest.send(null);});
 }
+function postUrlPromise(url,qry) {
+    return new Promise(function(resolve,reject){
+    var webrequest = new XMLHttpRequest();
+    webrequest.open('POST', url, true);
+    webrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
+    webrequest.onload=function(){
+        resolve(webrequest.responseText);
+    };
+    webrequest.send(qry);});
+}
+
 function getUrl(url,func){
     var webrequest = new XMLHttpRequest();
     webrequest.open('GET', url, true);
@@ -23,12 +34,26 @@ function getUrl(url,func){
     webrequest.send(null);
 }
 function urlBN(){
-    var tmp=location.pathname.split("/");
-    return location.protocol+"//"+window.location.hostname+document.location.pathname.replace(tmp[tmp.length-1],"");
+    var tmp = location.pathname.split("/");
+    var bn=location.protocol+"//"+window.location.hostname+document.location.pathname.replace(tmp[tmp.length-1],"");
+    if (tmp[tmp.length - 2] == "admin" || tmp[tmp.length - 2] == "res") bn=bn.replace("/"+tmp[tmp.length-2],"");
+    return bn;
 }
 function loadSideBar(){
-    getUrl(urlBN()+"res/menu.html",function(){
-        document.getElementsByClassName("leftPart")[0].innerHTML=this.responseText;
+    getUrlPromise(urlBN() + "res/menu.html").then(function (r) {
+        document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());;
+        
+    }).then(function () {
+        return getUrlPromise(urlBN() + "res/api.php?isTutor");
+    }).then(function (r) {
+        if (r == "1") {
+            return getUrlPromise(urlBN() + "res/adminMenu.html");
+        }
+        return new Promise(function (resolve, reject) {
+            resolve("");
+        });
+    }).then(function (r) {
+        document.getElementsByClassName("menuBar")[0].innerHTML = document.getElementsByClassName("menuBar")[0].innerHTML + r.replace(/href="/g,'href="'+urlBN());
     });
 }
 function load(){

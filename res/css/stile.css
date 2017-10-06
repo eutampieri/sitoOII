@@ -141,3 +141,6 @@ img{
     border:1px solid #011622;
     border-radius:.5em
 }
+.cursoreMano{
+    cursor: pointer;
+}

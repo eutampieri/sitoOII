@@ -10,8 +10,7 @@ function server($mail){
 	}*/
 return array('server' => 'smtp-mail.outlook.com', 'porta' => 587,'user'=>'YourPreetyEmail','da'=>'no-reply.etsoftware@outlook.it');
 }
-include("res/class.phpmailer.php");
-include("res/class.smtp.php");
+include("res/mail.php");
 $file_db = new PDO('sqlite:res/bugs.sqlite');
 $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if(isset($_POST["action"])&&$_POST["action"]=="risolvi"){

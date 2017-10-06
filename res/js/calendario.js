@@ -8,7 +8,7 @@ function loadCalendario(){
             var n=document.createElement("li");
             var inizio=new Date(evento.Inizio*1000);
             var fine=new Date(evento.Fine*1000);
-            n.innerHTML=dow[inizio.getDay()]+" "+inizio.getDate().toString()+'/'+inizio.getMonth+().toString()+'/'+inizio.getFullYear().toString()+" dalle "+inizio.getHours().toString()+':'+inizio.getMinutes().toString()+" alle"+fine.getHours().toString()+':'+fine.getMinutes().toString()+": "+evento.Descrizione;
+            n.innerHTML=dow[inizio.getDay()]+" "+inizio.getDate().toString()+'/'+inizio.getMonth().toString()+'/'+inizio.getFullYear().toString()+" dalle "+inizio.getHours().toString()+':'+inizio.getMinutes().toString()+" alle"+fine.getHours().toString()+':'+fine.getMinutes().toString()+": "+evento.Descrizione;
             document.getElementById("lezioni").appendChild(n);
         }
     });
@@ -19,7 +19,7 @@ function loadCalendario(){
             var n=document.createElement("li");
             var inizio=new Date(evento.Inizio*1000);
             var fine=new Date(evento.Fine*1000);
-            n.innerHTML=dow[inizio.getDay()]+" "+inizio.getDate().toString()+'/'+inizio.getMonth+().toString()+'/'+inizio.getFullYear().toString()+" dalle "+inizio.getHours().toString()+':'+inizio.getMinutes().toString()+" alle"+fine.getHours().toString()+':'+fine.getMinutes().toString()+": "+evento.Descrizione;
+            n.innerHTML=dow[inizio.getDay()]+" "+inizio.getDate().toString()+'/'+inizio.getMonth().toString()+'/'+inizio.getFullYear().toString()+" dalle "+inizio.getHours().toString()+':'+inizio.getMinutes().toString()+" alle"+fine.getHours().toString()+':'+fine.getMinutes().toString()+": "+evento.Descrizione;
             document.getElementById("gare").appendChild(n);
         }
     });
