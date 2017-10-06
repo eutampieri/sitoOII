@@ -38,11 +38,11 @@ function checkUser()
 {
     var username = document.getElementById("userCMS").value;
     var password = document.getElementById("passwordCMS").value;
-    var query = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
+    var query = "action=cmsUser&username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
     
     document.getElementById("cmsStatus").src = "res/icons/loading.gif";
     
-    postUrl(urlBN() + "res/checkUser.php",
+    postUrl(urlBN() + "res/api.php",
             function()
             {
                 var response = JSON.parse(this.responseText);
@@ -56,11 +56,11 @@ function checkUser()
 function deDupeUser()
 {
     var username = document.getElementById("userName").value;
-    var query = "username=" + encodeURIComponent(username);
+    var query = "action=userExists&username=" + encodeURIComponent(username);
 
     document.getElementById("userStatus").src = "res/icons/loading.gif";
 
-    postUrl(urlBN() + "res/userExists.php",
+    postUrl(urlBN() + "res/api.php",
             function()
             {
                 UState = this.responseText === "0";

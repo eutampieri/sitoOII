@@ -1,15 +1,6 @@
 var utenti=[];
 var nTutor=0;
 var nPDR=0;
-function getUrlPromise(url) {
-    return new Promise(function(resolve,reject){
-    var webrequest = new XMLHttpRequest();
-    webrequest.open('GET', url, true);
-    webrequest.onload=function(){
-        resolve(webrequest.responseText);
-    };
-    webrequest.send(null);});
-}
 function waitForUsers(){
     return new Promise(function(resolve,reject){
         while(utenti.length==0){
@@ -20,7 +11,7 @@ function waitForUsers(){
 }
 function loadUserSearch(n){
     if(utenti.length==0){
-        getUrlPromise(urlBN()+"classificaCms.php?first=0&last=200").then(function(r){
+        getUrlPromise(urlBN() + "res/api.php?action=classifica&first=0&last=200").then(function(r){
             dati=JSON.parse(r).users;
             for(var i=0;i<dati.length;i++){
                 utenti.push([dati[i].first_name + " " + dati[i].last_name, dati[i].username]);
@@ -38,10 +29,8 @@ function loadPDRUserSearch(n){
     document.getElementById("PDR"+n.toString()).disabled=false;
     new Awesomplete(document.getElementById("PDR"+n.toString()),{list:utenti});
 }
-function loadWrapper(){
-    getUrl(urlBN()+"menu.html",function(){
-        document.getElementsByClassName("leftPart")[0].innerHTML=this.responseText.replace(/href="/g,'href="../');
-    });
+function loadWrapper() {
+    loadSideBar();
     loadUserSearch(nTutor);
     loadPDRUserSearch(nPDR);
 }

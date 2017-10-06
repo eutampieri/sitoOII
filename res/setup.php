@@ -1,6 +1,6 @@
 <?php
 $query = <<<EOF
-CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, Email TEXT, Cellulare TEXT, Nome TEXT, Cognome TEXT, Classe TEXT)
+CREATE TABLE Utenti (Username TEXT, Password TEXT, CMSUser TEXT, Email TEXT, Nome TEXT, Cognome TEXT, Classe TEXT)
 CREATE TABLE Post(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT)
 CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)
 CREATE TABLE Notifiche(Username TEXT, JSON TEXT)
@@ -8,21 +8,31 @@ CREATE TABLE Sessioni (ID TEXT, Username TEXT)
 CREATE TABLE Tutor (CMSUser TEXT)
 CREATE TABLE APIKeys (Servizio TEXT, Chiave TEXT)
 CREATE TABLE RifClassifica (CMSUser TEXT)
+CREATE TABLE Eventi (Descrizione TEXT, Inizio INTEGER, Fine INTEGER, Tipo TEXT);
 EOF;
-
-$createDB = false;
-if(!is_file("db.sqlite")) $createDB = true;
-$database = new PDO("sqlite:db.sqlite");
-$database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-if($createDB)
-{
-    foreach(explode("\n",$query) as $q){
-        $stmt = $database->prepare($q);
-        $stmt->execute();
+$qry1=<<<EOF
+CREATE TABLE "Bugs" ("ID" TEXT PRIMARY KEY  NOT NULL ,"affects" TEXT,"notify" TEXT,"code" TEXT,"language" TEXT,"creator" TEXT,"fixed" BOOL,"date" DATETIME DEFAULT (null) ,"comment" TEXT,"desc" TEXT,"tags" TEXT)
+CREATE TABLE "Fixes" ("ID" TEXT PRIMARY KEY  NOT NULL  UNIQUE , "BugID" TEXT, "fixer" TEXT, "date" DATETIME, "votes" INTEGER, "code" TEXT, "comment" TEXT)
+EOF;
+if(isset($_POST["action"])){
+    $createDB = false;
+    if(!is_file("db.sqlite")) $createDB = true;
+    $database = new PDO("sqlite:db.sqlite");
+    $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $database1 = new PDO("sqlite:bugs.sqlite");
+    $database1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    if($createDB)
+    {
+        foreach(explode("\n",$query) as $q){
+            $stmt = $database->prepare($q);
+            $stmt->execute();
+        }
+        foreach(explode("\n",$qry1) as $q){
+            $stmt = $database1->prepare($q);
+            $stmt->execute();
+        }
     }
-}
-elseif(isset($_POST["action"])){
     $listaTutor=json_decode($_POST["tutors"],true);
     $qry="INSERT INTO Tutor VALUES (:u);";
     foreach ($listaTutor as $t) {
@@ -62,7 +72,7 @@ elseif(isset($_POST["action"])){
     $stmt->bindParam(":tc", $_POST["tg_ch"]);
     $stmt->execute();
 }
-else{
+else if(is_file("db.sqlite")){
     die();
 }
 ?>
