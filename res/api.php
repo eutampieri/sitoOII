@@ -78,6 +78,39 @@ switch ($azione) {
         else{
             echo "Non autorizzato";
         }
+    case "caricaFile":
+        $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser)");
+        $stmt->bindParam(":id", $_COOKIE["sessione"]);
+        $stmt->execute();
+        if(count($stmt->fetchAll(PDO::FETCH_ASSOC))==1){
+            $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id");
+            $stmt->bindParam(":id", $_COOKIE["sessione"]);
+            $stmt->execute();
+            $autore=$stmt->fetchAll(PDO::FETCH_ASSOC)[0]["Username"];
+            $data=time();
+            $file=file_get_contents($_FILES["file"]["tmp_name"]);
+            $stmt=$database->prepare("INSERT INTO Risorse VALUES (:nome , :file , :autore , :data)");
+            $stmt->bindParam(":nome",$_POST["nome"]);
+            $stmt->bindParam(":file",$file);
+            $stmt->bindParam(":autore",$autore);
+            $stmt->bindParam(":data",$data);
+            header("Location:../admin/file.html#ok?File%20caricato%20correttamente");
+        }
+        else{
+            header("Location:../admin/file.html#err?Non%20autorizzato");
+        }
+        break;
+    case "cercaFile":
+        $stmt=$database->prepare("SELECT Nome, Data FROM Risorse WHERE Nome LIKE :q");
+        $_GET["q"]='%'.$_GET["q"].'%';
+        $stmt->bindParam(":q", $_GET["q"]);
+        $dati=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $res=[];
+        for($i=0;$i<count($dati);$i++){
+            array_push($res,[$dati[$i]["Nome"], $dati[$i]["Data"]]);
+        }
+        echo json_encode($res);
+        break;
     default:
         # code...
         break;
