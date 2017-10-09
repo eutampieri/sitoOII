@@ -1,3 +1,4 @@
+var dow=["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
 function loadPost() {
     loadSideBar();
     getUrlPromise(urlBN() + "res/api.php?action=post&id=" + encodeURIComponent(getFragment())).then(function (d) {
@@ -9,7 +10,7 @@ function loadPost() {
         document.getElementsByTagName("title")[0].innerHTML = "OII - Post: " + post.Titolo;
         desc = document.createElement("i");
         var d = new Date(parseInt(post.Data)*1000);
-        desc.innerHTML = "Di " + post.Autore + ", " + d.toString();
+        desc.innerHTML = "Di " + post.Autore + ", " + dow[d.getDay()]+" "+padding(d.getDate(), 2)+'/'+padding(d.getHours(), 2)+':'+padding(d.getMinutes(), 2);
         testo = document.createElement("div");
         testo.innerHTML = converter.makeHtml(post.Contenuto);
         var p = document.getElementById("p");
