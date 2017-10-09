@@ -54,6 +54,7 @@ function urlBN(){
     return bn;
 }
 function loadSideBar() {
+    document.getElementsByTagName("title")[0].innerHTML = "OII - " + document.getElementsByTagName("h1")[0].innerHTML;
     if (typeof Notyf != "undefined") {
         centroNotifiche = new Notyf();
     }
