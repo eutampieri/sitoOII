@@ -144,3 +144,9 @@ img{
 .cursoreMano{
     cursor: pointer;
 }
+.whitebg{
+    background-color: white;
+}
+.button.noBlock{
+    display:inline-block!important;
+}

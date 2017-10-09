@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sito allenamenti OII</title>
+        <link rel="stylesheet" href="../res/css/stile.css" type="text/css">
+        <script type="text/javascript" src="../res/js/main.js"></script>
+        <link rel="stylesheet" href="../res/css/notyf.min.css">        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <link rel="stylesheet" href="../res/css/awesomplete.css" />
+        <script src="../res/js/awesomplete.min.js" async></script>
+        <script src="../res/js/creapost.js" async></script>
+    </head>
+    <body onload="loadWrapper()">
+        <h1>Crea un post</h1>
+        <div class="leftPart"></div>
+        <div class="mainPart">
+            <div class="post">
+                <h2>Aggiungi un file</h2>
+                <input id="file" onkeyup="cerca()" placeholder="Nome del file">
+                <a class="button cursoreMano noBlock" onclick="aggiungi();">Aggiungi file</a>
+                <hr>
+                <div class="whitebg"><textarea># Titolo del post</textarea></div>
+                <a class="button cursoreMano" onclick="savePost();">Salva post</a>
+            </div>
+        </div>
+        <script type="text/javascript" src="../res/js/notyf.min.js"></script>
+    </body>
+</html>

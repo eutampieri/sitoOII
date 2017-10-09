@@ -82,7 +82,7 @@ switch ($azione) {
         $stmt->execute();
         if(count($stmt->fetchAll(PDO::FETCH_ASSOC))==1){
             $stmt=$database->prepare("INSERT INTO Eventi VALUES (:d , :i , :f , :t )");
-            $stmt->bindParam(":d",$_POST["descrizione"]);
+            $stmt->bindParam(":d",mb_convert_encoding($_POST["descrizione"], 'utf-8', 'iso-8859-1'));
             $stmt->bindParam(":i",$_POST["inizio"]);
             $stmt->bindParam(":f",$_POST["fine"]);
             $stmt->bindParam(":t",$_POST["tipo"]);
@@ -105,36 +105,85 @@ switch ($azione) {
             $data=time();
             $file=file_get_contents($_FILES["file"]["tmp_name"]);
             $stmt=$database->prepare("INSERT INTO Risorse VALUES (:nome , :file , :autore , :data)");
-            $stmt->bindParam(":nome",$_POST["nome"]);
+            $stmt->bindParam(":nome",mb_convert_encoding($_POST["nome"], 'utf-8', 'iso-8859-1'));
             $stmt->bindParam(":file",$file);
             $stmt->bindParam(":autore",$autore);
             $stmt->bindParam(":data",$data);
             $stmt->execute();
-            header("Location:../admin/file.html#ok?File%20caricato%20correttamente");
+            header("Location:../admin/file.html#ok&File%20caricato%20correttamente");
         }
         else{
-            header("Location:../admin/file.html#err?Non%20autorizzato");
+            header("Location:../admin/file.html#err&Non%20autorizzato");
         }
         break;
+    case "idFile":
+        $stmt=$database->prepare("SELECT Data FROM Risorse WHERE Nome = :q");
+        $stmt->bindParam(":q", $_GET["q"]);
+        $stmt->execute();
+        $dati=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo $dati[0]["Data"];
+        break;
     case "cercaFile":
-        $stmt=$database->prepare("SELECT Nome, Data FROM Risorse WHERE Nome LIKE :q");
+        $stmt=$database->prepare("SELECT Nome FROM Risorse WHERE Nome LIKE :q");
         $_GET["q"]='%'.$_GET["q"].'%';
         $stmt->bindParam(":q", $_GET["q"]);
         $stmt->execute();
         $dati=$stmt->fetchAll(PDO::FETCH_ASSOC);
         $res=[];
         for($i=0;$i<count($dati);$i++){
-            array_push($res,[$dati[$i]["Nome"], $dati[$i]["Data"]]);
+            array_push($res,mb_convert_encoding($dati[$i]["Nome"], "UTF-8"));
         }
         echo json_encode($res);
         break;
     case "iconaFile":
         $stmt=$database->prepare("SELECT File FROM Risorse WHERE Data = :id");
-        $_GET["id"]=intval($_GET["id"]);
-        $stmt->bindParam(":id", $_GET["id"]);
+        $id=intval($_GET["id"]);
+        $stmt->bindParam(":id", $id);
         $stmt->execute();
         $mime=str_replace('/','-',finfo_buffer(finfo_open(FILEINFO_MIME_TYPE),$stmt->fetchAll(PDO::FETCH_ASSOC)[0]["File"]));
         header("Location: ".getSymLink($mime,"icons/files"));
+        break;
+    case "dlFile":
+        $stmt=$database->prepare("SELECT File FROM Risorse WHERE Data = :id");
+        $id=intval($_GET["id"]);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $file=$stmt->fetchAll(PDO::FETCH_ASSOC)[0]["File"];
+        header("Content-Type: ".finfo_buffer(finfo_open(FILEINFO_MIME_TYPE),$file));
+        echo $file;
+        break;
+    case "creaPost":
+        $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser)");
+        $stmt->bindParam(":id", $_COOKIE["sessione"]);
+        $stmt->execute();
+        if(count($stmt->fetchAll(PDO::FETCH_ASSOC))==1){
+            $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id");
+            $stmt->bindParam(":id", $_COOKIE["sessione"]);
+            $stmt->execute();
+            $autore=$stmt->fetchAll(PDO::FETCH_ASSOC)[0]["Username"];
+            $data=time();
+            $stmt=$database->prepare("INSERT INTO Post VALUES (:titolo , :contenuto , :data , :autore)");
+            $stmt->bindParam(":titolo", $_POST["titolo"]);
+            $stmt->bindParam(":contenuto", mb_convert_encoding($_POST["contenuto"], 'utf-8', 'iso-8859-1'));
+            $stmt->bindParam(":data", $data);
+            $stmt->bindParam(":autore", $autore);
+            $stmt->execute();
+            echo "OK";
+        }
+        else{
+            echo "Non autorizzato";
+        }
+        break;
+    case "postList":
+        $stmt=$database->prepare('SELECT Titolo, Contenuto, Data, Nome ||" "|| Cognome AS Autore FROM Post INNER JOIN Utenti ON Post.Autore=Utenti.Username ORDER BY Data DESC;');
+        $stmt->execute();
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        break;
+    case "post":
+        $stmt=$database->prepare('SELECT Titolo, Contenuto, Data, Nome ||" "|| Cognome AS Autore FROM Post INNER JOIN Utenti ON Post.Autore=Utenti.Username WHERE Data = :id');
+        $stmt->bindParam(":id", $_GET["id"]);
+        $stmt->execute();
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)[0]);
         break;
     default:
         # code...

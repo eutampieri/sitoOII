@@ -58,7 +58,7 @@ function loadSideBar() {
         }
     }
     getUrlPromise(urlBN() + "res/menu.html").then(function (r) {
-        document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());;
+        document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());
         
     }).then(function () {
         return getUrlPromise(urlBN() + "res/api.php?action=isTutor");
