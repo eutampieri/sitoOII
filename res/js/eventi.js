@@ -1,7 +1,7 @@
-var inizio = new Date;
-var fine = new Date;
-let cfields = ["inizio", "fine", "descrizione"];
-let qfields = ["descrizione", "tipo"];
+var inizio;
+var fine;
+var cfields = ["inizio", "fine", "descrizione"];
+var qfields = ["descrizione", "tipo"];
 function clearEvents() {
     for (var f in cfields) {
         document.getElementById(cfields[f]).value = "";
@@ -10,8 +10,8 @@ function clearEvents() {
 function loadEv() {
     loadSideBar();
     clearEvents();
-    flatpickr(document.getElementById("inizio"), { time_24hr: true, enableTime: true, dateFormat: "d/m/Y H:i", onChange: function(a,b,c){inizio=a[0];} });
-    flatpickr(document.getElementById("fine"), { time_24hr: true, enableTime: true, dateFormat: "d/m/Y H:i", onChange: function(a,b,c){fine=a[0];} });
+    flatpickr(document.getElementById("inizio"), { disable_mobile:!isDateSupported(), time_24hr: true, enableTime: true, dateFormat: "d/m/Y H:i", onChange: function(a,b,c){inizio=a[0];} });
+    flatpickr(document.getElementById("fine"), { disable_mobile:!isDateSupported(), time_24hr: true, enableTime: true, dateFormat: "d/m/Y H:i", onChange: function(a,b,c){fine=a[0];} });
 }
 function aggiungiEvento() {
     var qry = "action=addEvent";
