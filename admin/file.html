@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sito allenamenti OII</title>
+    <link rel="stylesheet" href="../res/css/stile.css" type="text/css">
+    <link rel="stylesheet" href="../res/css/notyf.min.css">
+    <script type="text/javascript" src="../res/js/main.js"></script>
+</head>
+
+<body onload="loadEv()">
+    <h1>Carica un file</h1>
+    <div class="leftPart">
+    </div>
+    <div class="mainPart">
+        <form class="post" method="POST" enctype="multipart/form-data" action="../res/api.php">
+            <input type="hidden" name="action" value="caricaFile">
+            Scegli un file: <input type="file" name="file"><br>
+            Nome del file: <input type="text" name="nome"><br>
+            <input type="submit" value="carica">
+        </form>
+    </div>
+    <script type="text/javascript" src="../res/js/notyf.min.js"></script>
+</body>
+
+</html>
