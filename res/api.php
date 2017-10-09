@@ -94,6 +94,7 @@ switch ($azione) {
             $stmt->bindParam(":file",$file);
             $stmt->bindParam(":autore",$autore);
             $stmt->bindParam(":data",$data);
+            $stmt->execute();
             header("Location:../admin/file.html#ok?File%20caricato%20correttamente");
         }
         else{
