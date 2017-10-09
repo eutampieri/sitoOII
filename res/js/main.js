@@ -3,6 +3,15 @@ function getFragment(){
 	var tmp=location.hash;
 	return tmp.replace('#','');
 }
+function isDateSupported() {
+    var input = document.createElement('input');
+    input.setAttribute('type','date');
+
+    var notADateValue = 'not-a-date';
+    input.setAttribute('value', notADateValue); 
+
+    return (input.value !== notADateValue);
+}
 function getUrlP(url, func) {
     return new Promise(function(resolve,reject){
     var webrequest = new XMLHttpRequest();
@@ -59,7 +68,7 @@ function loadSideBar() {
         }
     }
     getUrlPromise(urlBN() + "res/menu.html").then(function (r) {
-        document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());;
+        document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());
         
     }).then(function () {
         return getUrlPromise(urlBN() + "res/api.php?action=isTutor");
