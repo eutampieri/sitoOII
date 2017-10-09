@@ -10,7 +10,7 @@ function loadPost() {
         document.getElementsByTagName("title")[0].innerHTML = "OII - Post: " + post.Titolo;
         desc = document.createElement("i");
         var d = new Date(parseInt(post.Data)*1000);
-        desc.innerHTML = "Di " + post.Autore + ", " + dow[d.getDay()]+" "+padding(d.getDate(), 2)+'/'+padding(d.getHours(), 2)+':'+padding(d.getMinutes(), 2);
+        desc.innerHTML = "Di " + post.Autore + ", " + dow[d.getDay()] + " " + padding(d.getDate(), 2) + '/' + padding(d.getMonth(), 2) + '/' + padding(d.getFullYear(), 4) + " alle " + padding(d.getHours(), 2) + ':' + padding(d.getMinutes(), 2);
         testo = document.createElement("div");
         testo.innerHTML = converter.makeHtml(post.Contenuto);
         var p = document.getElementById("p");
@@ -31,7 +31,7 @@ function loadPostList() {
             titolo.innerHTML = post.Titolo;
             desc = document.createElement("i");
             var d = new Date(parseInt(post.Data)*1000);
-            desc.innerHTML = "Di " + post.Autore + ", " + d.toString();
+            desc.innerHTML = "Di " + post.Autore + ", " + dow[d.getDay()] + " " + padding(d.getDate(), 2) + '/' + padding(d.getMonth(), 2) + '/' + padding(d.getFullYear(), 4) + " alle " + padding(d.getHours(), 2) + ':' + padding(d.getMinutes(), 2);
             testo = document.createElement("div");
             testo.innerHTML = converter.makeHtml(post.Contenuto).substr(0,400)+"<br><a href=\"post.html#"+post.Data+'">Mostra tutto</a>';
             var p = document.getElementsByClassName("mainPart")[0];
