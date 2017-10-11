@@ -3,6 +3,16 @@ function getFragment(){
 	var tmp=location.hash;
 	return tmp.replace('#','');
 }
+function padding(n, nZeros)
+{
+    var res = "";
+    n = n.toString();
+    var digit = n.length;
+    for (var i = 0; i < nZeros - digit; i++)
+        res += "0";
+    res += n;
+    return res;
+}
 function isDateSupported() {
     var input = document.createElement('input');
     input.setAttribute('type','date');
