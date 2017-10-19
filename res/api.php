@@ -185,6 +185,35 @@ switch ($azione) {
         $stmt->execute();
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)[0]);
         break;
+    case "task":
+        $data = array('action' => "get", 'name' =>$_GET["task"]);
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json\r\n",
+                'method'  => 'POST',
+                'content' => json_encode($data)
+            )
+        );
+        $context  = stream_context_create($options);
+        echo file_get_contents("https://cms.di.unipi.it/api/task", false, $context);
+        break;
+    case "userCMS":
+        $data = array('action' => "get", 'username' =>$_GET["user"]);
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json\r\n",
+                'method'  => 'POST',
+                'content' => json_encode($data)
+            )
+        );
+        $context  = stream_context_create($options);
+        echo file_get_contents("https://cms.di.unipi.it/api/user", false, $context);
+        break;
+    case "listaUtentiCMS":
+        $stmt=$database->prepare("SELECT Nome, Cognome, Classe, CMSUser FROM Utenti");
+        $stmt->execute();
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        break;
     default:
         # code...
         break;

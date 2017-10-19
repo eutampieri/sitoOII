@@ -149,4 +149,9 @@ img{
 }
 .button.noBlock{
     display:inline-block!important;
+    padding: 0.2em!important;
+}
+embed{
+    width:100%;
+    min-height: 50vh;
 }
