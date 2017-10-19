@@ -15,6 +15,16 @@ if (isset($_GET["action"])) {
 } else {
     $azione=$_POST["action"];
 }
+if($azione=="ical"){
+    if(!is_file("ical.php")){
+        file_put_contents("ical.ver",file_get_contents("https://raw.githubusercontent.com/eutampieri/PHPiCal/master/VERSION"));
+        file_put_contents("ical.php",file_get_contents("https://raw.githubusercontent.com/eutampieri/PHPiCal/master/ical.php"));
+    }
+    elseif(intval(file_get_contents("ical.ver"))<intval(file_get_contents("https://raw.githubusercontent.com/eutampieri/PHPiCal/master/VERSION"))){
+        file_put_contents("ical.php",file_get_contents("https://raw.githubusercontent.com/eutampieri/PHPiCal/master/ical.php"));
+    }
+    require("ical.php");
+}
 switch ($azione) {
     case 'userExists':
         $stmt=$database->prepare("SELECT * FROM Utenti WHERE Username = :u");
@@ -78,6 +88,13 @@ switch ($azione) {
         else{
             echo "Non autorizzato";
         }
+    case "ical":
+        $cal = new iCalendar();
+        header("Content-Type: text/calendar");
+        $stmt=$database->prepare("SELECT Inizio AS start, Fine as end, Descrizione as desc FROM Eventi");
+        $stmt->execute();
+        echo $cal->ical($stmt->fetchAll(PDO::FETCH_ASSOC));
+        break;
     default:
         # code...
         break;
