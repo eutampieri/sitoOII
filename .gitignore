@@ -1,4 +1,5 @@
 *.sqlite
 .DS_Store
 *.apikey
-*.tgbotkey
+res/ical.ver
+res/ical.php

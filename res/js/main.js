@@ -22,15 +22,6 @@ function isDateSupported() {
 
     return (input.value !== notADateValue);
 }
-function getUrlP(url, func) {
-    return new Promise(function(resolve,reject){
-    var webrequest = new XMLHttpRequest();
-    webrequest.open('GET', url, true);
-    webrequest.onload=function(){
-        resolve(func(webrequest));
-    };
-    webrequest.send(null);});
-}
 function getUrlPromise(url) {
     return new Promise(function(resolve,reject){
     var webrequest = new XMLHttpRequest();

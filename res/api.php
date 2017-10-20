@@ -214,6 +214,16 @@ switch ($azione) {
         $stmt->execute();
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         break;
+    case "rifClassifica":
+        $stmt=$database->prepare("SELECT * FROM RifClassifica");
+        $stmt->execute();
+        $a=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $u=[];
+        foreach($a as $b){
+            array_push($u,$b["CMSUser"]);
+        }
+        echo json_encode($u);
+        break;
     default:
         # code...
         break;
