@@ -3,6 +3,16 @@ function getFragment(){
 	var tmp=location.hash;
 	return tmp.replace('#','');
 }
+function padding(n, nZeros)
+{
+    var res = "";
+    n = n.toString();
+    var digit = n.length;
+    for (var i = 0; i < nZeros - digit; i++)
+        res += "0";
+    res += n;
+    return res;
+}
 function isDateSupported() {
     var input = document.createElement('input');
     input.setAttribute('type','date');
@@ -54,6 +64,7 @@ function urlBN(){
     return bn;
 }
 function loadSideBar() {
+    document.getElementsByTagName("title")[0].innerHTML = "OII - " + document.getElementsByTagName("h1")[0].innerHTML;
     if (typeof Notyf != "undefined") {
         centroNotifiche = new Notyf();
     }
@@ -67,7 +78,7 @@ function loadSideBar() {
         }
     }
     getUrlPromise(urlBN() + "res/menu.html").then(function (r) {
-        document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());;
+        document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());
         
     }).then(function () {
         return getUrlPromise(urlBN() + "res/api.php?action=isTutor");

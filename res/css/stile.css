@@ -137,10 +137,15 @@ img{
     display: none;
 }
 .strengthBar{
-    width:50%;
     border:1px solid #011622;
     border-radius:.5em
 }
 .cursoreMano{
     cursor: pointer;
+}
+.whitebg{
+    background-color: white;
+}
+.button.noBlock{
+    display:inline-block!important;
 }

@@ -1,63 +1,65 @@
-<head>
-	<title>Sito allenamenti OII - tutor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="res/css/stile.css" type="text/css">
-    <script type="text/javascript" src="res/js/main.js"></script>
-</head>
+<html>
+	<head>
+		<title>Sito allenamenti OII - tutor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="res/css/stile.css" type="text/css">
+		<script type="text/javascript" src="res/js/main.js"></script>
+	</head>
 
-<body onload="load()">
-	<h1>I nostri tutor</h1>
-	<div class=leftPart>
-		<ul class="menuBar"></div>
-	<div class="mainPart">
-		<div class="tutor">
-			<h2 class="thisTutor" onclick= "openImage('marcoImage')">Marco Selvatici</h2>
-			<img src="res/imgs/marcoImage.jpg" class="popupImage" id="marcoImage"> </img>
-			<p>Studente universitario frequentante la facolt&agrave; di Ingegneria Informatica all'Imperial College di Londra </p>
+	<body onload="load()">
+		<h1>I nostri tutor</h1>
+		<div class=leftPart>
+			<ul class="menuBar"></div>
+		<div class="mainPart">
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('marcoImage')">Marco Selvatici</h2>
+				<img src="res/imgs/marcoImage.jpg" class="popupImage" id="marcoImage"> </img>
+				<p>Studente universitario frequentante la facolt&agrave; di Ingegneria Informatica all'Imperial College di Londra </p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('ugoImage')">Ugo Baroncini</h2>
+				<img src="res/imgs/ugoImage.jpg" class="popupImage" id="ugoImage"> </img>
+				<p>Studente universitario frequentante la facolt&agrave; di Informatica all'universit&agrave; di Cesena</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('giorgioImage')">Giorgio Minoccari</h2>
+				<img src="res/imgs/giorgioImage.jpg" class="popupImage" id="giorgioImage"> </img>
+				<p>Studente del 5<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('piaceImage')">Marco Piacentini</h2>
+				<img src="res/imgs/piaceImage.jpg" class="popupImage" id="piaceImage"> </img>
+				<p>Studente del 5<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('filippoImage')">Filippo Selvatici</h2>
+				<img src="res/imgs/filippoImage.jpg" class="popupImage" id="filippoImage"> </img>
+				<p>Studente del 3<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('michealImage')">Micheal Chelli</h2>
+				<img src="res/imgs/michealImage.jpg" class="popupImage" id="michealImage"> </img>
+				<p>Studente del 4<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('rebeccaImage')">Rebecca Monti</h2>
+				<img src="https://gravatar.com/avatar/d1326cda30ec0a3147db120c094a1ec3?d=identicon&s=200" class="popupImage" id="rebeccaImage"> </img>
+				<p>Studente del 4<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
+			</div>
+			<div class="tutor">
+				<h2 class="thisTutor" onclick= "openImage('eugenioImage')">Eugenio Tampieri</h2>
+				<img src="https://www.gravatar.com/avatar/798fd98171d264b37f850c538df49b95?d=identicon&s=1024" class="popupImage" id="eugenioImage"> </img>
+				<p>Studente del 4<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
+			</div>
 		</div>
-		<div class="tutor">
-			<h2 class="thisTutor" onclick= "openImage('ugoImage')">Ugo Baroncini</h2>
-			<img src="res/imgs/ugoImage.jpg" class="popupImage" id="ugoImage"> </img>
-			<p>Studente universitario frequentante la facolt&agrave; di Informatica all'universit&agrave; di Cesena</p>
-		</div>
-		<div class="tutor">
-			<h2 class="thisTutor" onclick= "openImage('giorgioImage')">Giorgio Minoccari</h2>
-			<img src="res/imgs/giorgioImage.jpg" class="popupImage" id="giorgioImage"> </img>
-			<p>Studente del 5<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
-		</div>
-		<div class="tutor">
-			<h2 class="thisTutor" onclick= "openImage('piaceImage')">Marco Piacentini</h2>
-			<img src="res/imgs/piaceImage.jpg" class="popupImage" id="piaceImage"> </img>
-			<p>Studente del 5<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
-		</div>
-		<div class="tutor">
-			<h2 class="thisTutor" onclick= "openImage('filippoImage')">Filippo Selvatici</h2>
-			<img src="res/imgs/filippoImage.jpg" class="popupImage" id="filippoImage"> </img>
-			<p>Studente del 3<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
-		</div>
-		<div class="tutor">
-			<h2 class="thisTutor" onclick= "openImage('michealImage')">Micheal Chelli</h2>
-			<img src="res/imgs/michealImage.jpg" class="popupImage" id="michealImage"> </img>
-			<p>Studente del 4<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
-		</div>
-		<div class="tutor">
-			<h2 class="thisTutor" onclick= "openImage('rebeccaImage')">Rebecca Monti</h2>
-			<img src="https://gravatar.com/avatar/d1326cda30ec0a3147db120c094a1ec3?d=identicon&s=200" class="popupImage" id="rebeccaImage"> </img>
-			<p>Studente del 4<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
-		</div>
-		<div class="tutor">
-			<h2 class="thisTutor" onclick= "openImage('eugenioImage')">Eugenio Tampieri</h2>
-			<img src="https://www.gravatar.com/avatar/798fd98171d264b37f850c538df49b95?d=identicon&s=1024" class="popupImage" id="eugenioImage"> </img>
-			<p>Studente del 4<sup>o</sup> anno al Liceo Scientifico delle Scienze Applicate "F. Alberghetti"</p>
-		</div>
-	</div>
-</body>
+	</body>
 
-<script>
-	function openImage(id){
-		if(document.getElementById(id).style.display == "block")
-			document.getElementById(id).style.display = "none";
-		else
-			document.getElementById(id).style.display = "block";
-	}
-</script>
+	<script>
+		function openImage(id){
+			if(document.getElementById(id).style.display == "block")
+				document.getElementById(id).style.display = "none";
+			else
+				document.getElementById(id).style.display = "block";
+		}
+	</script>
+</html>

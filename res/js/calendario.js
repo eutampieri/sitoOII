@@ -1,14 +1,3 @@
-function padding(n, nZeros)
-{
-    var res = "";
-    n = n.toString();
-    var digit = n.length;
-    for (var i = 0; i < nZeros - digit; i++)
-        res += "0";
-    res += n;
-    return res;
-}
-
 function loadCalendario() {
     var dow=["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
     load();
