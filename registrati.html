@@ -1,32 +1,68 @@
 <html>
-    <head>
-        <title> Sito allenamenti OII - login </title>
-        <link rel="stylesheet" href="res/css/stile.css" type="text/css">
-        <script type="text/javascript" src="res/js/main.js"></script>
-        <script type="text/javascript" src="res/js/register.js"></script>
-        <script type="text/javascript" src="res/js/zxcvbn.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-
-    <body onload="load()">
-        <h1>Registrati</h1>
-        <div class=leftPart>
-            <ul class="menuBar"></div>
-        <div class="mainPart">
-            <form class="post" action="register.php" method="POST">
-                Nome utente: <input type="text" onchange = "deDupeUser()" id="userName" name="username"><img id="userStatus" class="icons"><br>
-                Nome: <input type="text" name="nome" required><br>
-                Cognome: <input type="text" name="cognome" required><br>
-                Classe: <input type="text" name="classe" required><br>
-                Password: <input id="pwd1" onkeyup="checkPassword()" type="password" name="password"><br>
-                Ripeti la password: <input id="pwd2" onkeyup="checkPassword()" type="password"><br>
-                <div class="strengthBar"><div style="height: 0.5em;" id="meter"></div></div>
-                <p style="color:darkred" id="pwdMisMatch" class="nascosto">Le password non corrispondono</p>
-                Username CMS: <input onchange="checkUser()" type = "text" id="userCMS" name="userCMS"><br>
-                Password CMS: <input onchange="checkUser()" type = "password" id="passwordCMS"><img id="cmsStatus" class="icons"><br>
-                E-mail: <input type="email" name="email" required><br>
-                <input type="submit" id="invia" value="Registrati" disabled>
-            </form>
-        </div>
-    </body>
-</html>
+        
+        <head>
+            <title> Sito allenamenti OII - login </title>
+            <link rel="stylesheet" href="res/css/stile.css" type="text/css">
+            <script type="text/javascript" src="res/js/main.js"></script>
+            <script type="text/javascript" src="res/js/register.js"></script>
+            <script type="text/javascript" src="res/js/zxcvbn.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        
+        <body onload="load()">
+            <h1>Registrati</h1>
+            <div class=leftPart>
+                <ul class="menuBar">
+            </div>
+            <div class="mainPart">
+                <form class="post" action="register.php" method="POST">
+                    <table>
+                        <tr>
+                            <td>Nome utente:</td>
+                            <td><input type="text" onchange="deDupeUser()" id="userName" name="username"><img id="userStatus" class="icons"></td>
+                        </tr>
+                        <tr>
+                            <td>Nome:</td>
+                            <td><input type="text" name="nome" required></td>
+                        </tr>
+                        <tr>
+                            <td>Cognome:</td>
+                            <td><input type="text" name="cognome" required></td>
+                        </tr>
+                        <tr>
+                            <td>Classe:</td>
+                            <td><input type="text" name="classe" required></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td><input id="pwd1" onkeyup="checkPassword()" type="password" name="password"></td>
+                        </tr>
+                        <tr>
+                            <td>Ripeti la password:</td>
+                            <td><input id="pwd2" onkeyup="checkPassword()" type="password"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="strengthBar">
+                                    <div style="height: 0.5em;" id="meter"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p style="color:darkred" id="pwdMisMatch" class="nascosto">Le password non corrispondono</p>
+                            </td>
+                        </tr>
+                        <tr><td>Username CMS:</td>
+                            <td><input onchange="checkUser()" type="text" id="userCMS" name="userCMS"></td></tr>
+                        <tr><td>Password CMS:</td>
+                            <td><input onchange="checkUser()" type="password" id="passwordCMS"><img id="cmsStatus" class="icons"></td></tr>
+                        <tr><td>E-mail:</td>
+                        <td><input type="email" name="email" required></td></tr>
+                    </table>
+                    <input type="submit" id="invia" value="Registrati" disabled>
+                </form>
+            </div>
+        </body>
+        
+        </html>
