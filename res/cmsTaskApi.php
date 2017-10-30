@@ -8,4 +8,4 @@ $options = array(
     )
 );
 $context  = stream_context_create($options);
-echo file_get_contents("https://cms.di.unipi.it/api/task", false, $context);
+echo file_get_contents("https://training.olinfo.it/api/task", false, $context);

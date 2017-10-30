@@ -56,7 +56,7 @@ switch ($azione) {
             )
         );
         $context  = stream_context_create($options);
-        echo file_get_contents("https://cms.di.unipi.it/api/user", false, $context);
+        echo file_get_contents("https://training.olinfo.it/api/user", false, $context);
         break;
     case "classifica":
         $data = array('action' => "list", 'first' =>$_GET["first"] , 'last'=>$_GET["last"]);
@@ -68,7 +68,7 @@ switch ($azione) {
             )
         );
         $context  = stream_context_create($options);
-        echo file_get_contents("https://cms.di.unipi.it/api/user", false, $context);
+        echo file_get_contents("https://training.olinfo.it/api/user", false, $context);
         break;
     case "lezioni":
         $stmt=$database->prepare("SELECT * FROM Eventi WHERE Tipo = \"Lezione\"");
@@ -202,6 +202,45 @@ switch ($azione) {
         $stmt->bindParam(":id", $_GET["id"]);
         $stmt->execute();
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)[0]);
+        break;
+    case "task":
+        $data = array('action' => "get", 'name' =>$_GET["task"]);
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json\r\n",
+                'method'  => 'POST',
+                'content' => json_encode($data)
+            )
+        );
+        $context  = stream_context_create($options);
+        echo file_get_contents("https://training.olinfo.it/api/task", false, $context);
+        break;
+    case "userCMS":
+        $data = array('action' => "get", 'username' =>$_GET["user"]);
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json\r\n",
+                'method'  => 'POST',
+                'content' => json_encode($data)
+            )
+        );
+        $context  = stream_context_create($options);
+        echo file_get_contents("https://training.olinfo.it/api/user", false, $context);
+        break;
+    case "listaUtentiCMS":
+        $stmt=$database->prepare("SELECT Nome, Cognome, Classe, CMSUser FROM Utenti");
+        $stmt->execute();
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        break;
+    case "rifClassifica":
+        $stmt=$database->prepare("SELECT * FROM RifClassifica");
+        $stmt->execute();
+        $a=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $u=[];
+        foreach($a as $b){
+            array_push($u,$b["CMSUser"]);
+        }
+        echo json_encode($u);
         break;
     default:
         # code...

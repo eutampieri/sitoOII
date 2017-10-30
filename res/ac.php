@@ -1,5 +1,5 @@
 <?php
-$url = 'https://cms.di.unipi.it/api/task';
+$url = 'https://training.olinfo.it/api/task';
 $data = array("action"=>"list","search"=>$_GET["term"],"first"=>0,"last"=>100);
 $options = array(
     'http' => array(
@@ -14,8 +14,10 @@ if ($result === FALSE) { /* Handle error */ }
 $prbls=["altro"];
 $file_db = new PDO('sqlite:bugs.sqlite');
 $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$qry="SELECT affects FROM Bugs";
+$qry="SELECT affects FROM Bugs WHERE affects like :a";
 $stmt = $file_db->prepare($qry);
+$_GET["term"]='%'.$_GET["term"].'%';
+$stmt->bindParam(":a",$_GET["term"]);
 $stmt->execute();
 $tags=$stmt->fetchAll(PDO::FETCH_ASSOC);
 for($i=0;$i<count($tags); $i++) {

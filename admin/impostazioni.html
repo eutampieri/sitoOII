@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sito allenamenti OII</title>
+    <link rel="stylesheet" href="../res/css/stile.css" type="text/css">
+    <link rel="stylesheet" href="../res/css/notyf.min.css">
+    <script type="text/javascript" src="../res/js/main.js"></script>
+    <script type="text/javascript" src="../res/js/impostazioni.js"></script>
+</head>
+
+<body onload="loadEv()">
+    <h1>Impostazioni</h1>
+    <div class="leftPart">
+    </div>
+    <div class="mainPart">
+        <div class="post">
+            <h2>Aggiungi evento</h2>
+            Data e ora di inizio<input id="inizio"><br>
+            Data e ora di fine<input id="fine"><br>
+            Tipo evento: <select id="tipo">
+                <option>Gara</option>
+                <option>Lezione</option>
+            </select><br>
+            Descrizione:
+            <textarea id="descrizione"></textarea>
+            <a class="button cursoreMano" onclick="aggiungiEvento()">Aggiungi</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="../res/js/notyf.min.js"></script>
+</body>
+
+</html>
