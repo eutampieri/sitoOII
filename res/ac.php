@@ -1,5 +1,5 @@
 <?php
-$url = 'https://cms.di.unipi.it/api/task';
+$url = 'https://training.olinfo.it/api/task';
 $data = array("action"=>"list","search"=>$_GET["term"],"first"=>0,"last"=>100);
 $options = array(
     'http' => array(

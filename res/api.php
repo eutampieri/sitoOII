@@ -46,7 +46,7 @@ switch ($azione) {
             )
         );
         $context  = stream_context_create($options);
-        echo file_get_contents("https://cms.di.unipi.it/api/user", false, $context);
+        echo file_get_contents("https://training.olinfo.it/api/user", false, $context);
         break;
     case "classifica":
         $data = array('action' => "list", 'first' =>$_GET["first"] , 'last'=>$_GET["last"]);
@@ -58,7 +58,7 @@ switch ($azione) {
             )
         );
         $context  = stream_context_create($options);
-        echo file_get_contents("https://cms.di.unipi.it/api/user", false, $context);
+        echo file_get_contents("https://training.olinfo.it/api/user", false, $context);
         break;
     case "lezioni":
         $stmt=$database->prepare("SELECT * FROM Eventi WHERE Tipo = \"Lezione\"");
@@ -195,7 +195,7 @@ switch ($azione) {
             )
         );
         $context  = stream_context_create($options);
-        echo file_get_contents("https://cms.di.unipi.it/api/task", false, $context);
+        echo file_get_contents("https://training.olinfo.it/api/task", false, $context);
         break;
     case "userCMS":
         $data = array('action' => "get", 'username' =>$_GET["user"]);
@@ -207,7 +207,7 @@ switch ($azione) {
             )
         );
         $context  = stream_context_create($options);
-        echo file_get_contents("https://cms.di.unipi.it/api/user", false, $context);
+        echo file_get_contents("https://training.olinfo.it/api/user", false, $context);
         break;
     case "listaUtentiCMS":
         $stmt=$database->prepare("SELECT Nome, Cognome, Classe, CMSUser FROM Utenti");

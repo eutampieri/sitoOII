@@ -57,7 +57,7 @@ function getTaskUrl(task) {
         var url
         getUrlPromise(urlBN()+"res/api.php?action=task&task="+encodeURIComponent(task)).then(function(tskJson){
             tskDta=JSON.parse(tskJson);
-            url="https://cms.di.unipi.it/api/files/"+tskDta.statements.it+"/"+task+".pdf";
+            url="https://training.olinfo.it/api/files/"+tskDta.statements.it+"/"+task+".pdf";
             resolve(url);
         });
     });
