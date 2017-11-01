@@ -1,5 +1,5 @@
 <?php
-$url = 'https://cms.di.unipi.it/api/task';
+$url = 'https://training.olinfo.it/api/task';
 $data = array("action"=>"list","search"=>$_GET["problema"],"first"=>0,"last"=>100);
 
 // use key 'http' even if you send the request to https://...

@@ -1,3 +1,5 @@
 *.sqlite
 .DS_Store
 *.apikey
+res/ical.ver
+res/ical.php

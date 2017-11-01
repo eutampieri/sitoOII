@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title> Sito allenamenti OII - login </title>
+        <link rel="stylesheet" href="res/css/stile.css" type="text/css">
+        <link rel="stylesheet" href="res/css/awesomplete.css" />
+        <script src="res/js/awesomplete.min.js" async></script>    
+        <script type="text/javascript" src="res/js/main.js"></script>
+        <script type="text/javascript" src="res/js/problemaCMS.js"></script>
+        <script type="text/javascript" src="res/js/zxcvbn.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body onload="loadW()">
+        <h1>Problema</h1>
+        <div class=leftPart>
+            <ul class="menuBar">
+            </ul>
+        </div>
+        <div class="mainPart">
+            <div class="post">
+                <input id="taskName" placeholder="Per iniziare, cerca un problema" onkeyup="sAffects()"> <span class="button noBlock cursoreMano" onclick="loadTask()">Carica</span><br>
+                <embed id="taskPDF" class="nascosto" type="application/pdf">
+                <a class="nascosto" target="_blank" id="taskPDFlnk">Scarica il testo del problema</a>
+                <div class="nascosto" id="listaRisoltoW">
+                    <h2>Chi ha risolto questo problema?</h2>
+                    <ul id="listaRisolto"></ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
