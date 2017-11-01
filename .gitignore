@@ -3,3 +3,6 @@
 *.apikey
 res/ical.ver
 res/ical.php
+res/feed.ver
+res/phParticle.php
+res/parsedown.php

@@ -154,3 +154,6 @@ embed{
     width:100%;
     min-height: 50vh;
 }
+.feedIcon{
+    vertical-align: middle;
+}

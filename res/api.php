@@ -35,9 +35,23 @@ if($azione=="ical"){
         file_put_contents("ical.php",file_get_contents("https://raw.githubusercontent.com/eutampieri/PHPiCal/master/ical.php"));
     }
     elseif(intval(file_get_contents("ical.ver"))<intval(file_get_contents("https://raw.githubusercontent.com/eutampieri/PHPiCal/master/VERSION"))){
+        file_put_contents("ical.ver",file_get_contents("https://raw.githubusercontent.com/eutampieri/PHPiCal/master/VERSION"));
         file_put_contents("ical.php",file_get_contents("https://raw.githubusercontent.com/eutampieri/PHPiCal/master/ical.php"));
     }
     require("ical.php");
+}
+if($azione=="feed"){
+    if(!is_file("phParticle.php")){
+        file_put_contents("feed.ver",file_get_contents("https://raw.githubusercontent.com/eutampieri/phParticle/master/VERSION"));
+        file_put_contents("phParticle.php",file_get_contents("https://raw.githubusercontent.com/eutampieri/phParticle/master/phParticle.php"));
+    }
+    elseif(intval(file_get_contents("feed.ver"))<intval(file_get_contents("https://raw.githubusercontent.com/eutampieri/phParticle/master/VERSION"))){
+        file_put_contents("feed.ver",file_get_contents("https://raw.githubusercontent.com/eutampieri/phParticle/master/VERSION"));
+        file_put_contents("phParticle.php",file_get_contents("https://raw.githubusercontent.com/eutampieri/phParticle/master/phParticle.php"));
+    }
+    file_put_contents("parsedown.php",file_get_contents("https://raw.githubusercontent.com/erusev/parsedown/master/Parsedown.php"));
+    require("phParticle.php");
+    require("parsedown.php");
 }
 switch ($azione) {
     case 'userExists':
@@ -241,6 +255,20 @@ switch ($azione) {
             array_push($u,$b["CMSUser"]);
         }
         echo json_encode($u);
+        break;
+    case "feed":
+        header("Content-Type: application/atom+xml");
+        $stmt=$database->prepare('SELECT Titolo as title, Contenuto as content, Data as date, Data as url, Nome ||" "|| Cognome AS author FROM Post INNER JOIN Utenti ON Post.Autore=Utenti.Username ORDER BY date DESC;');
+        $stmt->execute();
+        $feed=new phParticle("Olimpiadi di Informatica",function($id,$url){
+            $url=str_replace("res/",'',$url);
+            $url=$url."post.html#".strval($id);
+            return $url;
+        }, function($md){
+            $p = new Parsedown();
+            return $p->text($md);
+        });
+        echo $feed->feed($stmt->fetchAll(PDO::FETCH_ASSOC));
         break;
     default:
         # code...
