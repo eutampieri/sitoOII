@@ -94,6 +94,26 @@ switch ($azione) {
         $stmt->execute();
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         break;
+    case "sideBar":
+        $res="";
+        $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser)");
+        $stmt->bindParam(":id", $_COOKIE["sessione"]);
+        $stmt->execute();
+        $stmt1=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id");
+        $stmt1->bindParam(":id", $_COOKIE["sessione"]);
+        $stmt1->execute();
+        if(count($stmt->fetchAll(PDO::FETCH_ASSOC))==1){
+            $res=$res.file_get_contents("adminMenu.html");
+        }
+        if(count($stmt1->fetchAll(PDO::FETCH_ASSOC))==1){
+            $res=$res.file_get_contents("userMenu.html");
+        }
+        else{
+            $res=$res.file_get_contents("regMenu.html");
+        }
+        $res=$res."</ul>";
+        echo $res;
+        break;
     case "isTutor":
         $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser)");
         $stmt->bindParam(":id", $_COOKIE["sessione"]);
@@ -276,6 +296,49 @@ switch ($azione) {
         $stmt->execute();
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)[0]);
         break;
+    case "thisUserInfo":
+        $stmt=$database->prepare("SELECT Utenti.Nome as nome, Utenti.Cognome as cognome, Utenti.Classe as classe, Utenti.Username as user, Utenti.CMSUser as cms FROM Sessioni INNER JOIN Utenti ON Sessioni.Username = Utenti.Username WHERE ID = :id");
+        $stmt->bindParam(":id",$_COOKIE["sessione"]);
+        $stmt->execute();
+        $res=$stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+        if(count($res)==0){
+            echo "{}";
+            break;
+        }
+        $res=json_decode(json_encode($res),true);
+        $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser)");
+        $stmt->bindParam(":id", $_COOKIE["sessione"]);
+        $stmt->execute();
+        $res["isTutor"]=(count($stmt->fetchAll(PDO::FETCH_ASSOC))==1);
+        echo json_encode($res);
+        break;
+    case "eliminaAccount":
+        $stmt=$database->prepare("SELECT Utenti.Username as user, Utenti.Password as Password FROM Sessioni INNER JOIN Utenti ON Sessioni.Username = Utenti.Username WHERE ID = :id");
+        $stmt->bindParam(":id",$_COOKIE["sessione"]);
+        $stmt->execute();
+        $utenti=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        if(count($utenti)==1){
+            if(password_verify($_POST["password"],$utenti[0]["Password"])){
+                $stmt=$database->prepare("DELETE FROM Utenti WHERE Username = :u");
+                $stmt->bindParam(":u",$utenti[0]["user"]);
+                $stmt->execute();
+                $stmt=$database->prepare("DELETE FROM Sessioni WHERE ID = :id");
+                $stmt->bindParam(":id",$_COOKIE["sessione"]);
+                $stmt->execute();
+                setcookie("sessione",null,time()-100);
+                echo "OK";
+            }
+            else{
+                echo "Password errata";
+            }
+        }
+        break;
+        case "logout":
+            $stmt=$database->prepare("DELETE FROM Sessioni WHERE ID = :id");
+            $stmt->bindParam(":id",$_COOKIE["sessione"]);
+            $stmt->execute();
+            setcookie("sessione",null,time()-100);
+            header("Location: ../index.html#ok&Logout%20avvenuto%20con%20successo");
     default:
         # code...
         break;

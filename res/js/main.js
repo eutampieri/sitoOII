@@ -78,14 +78,7 @@ function loadSideBar() {
         document.getElementsByClassName("leftPart")[0].innerHTML = r.replace(/href="/g,'href="'+urlBN());
         
     }).then(function () {
-        return getUrlPromise(urlBN() + "res/api.php?action=isTutor");
-    }).then(function (r) {
-        if (r == "1") {
-            return getUrlPromise(urlBN() + "res/adminMenu.html");
-        }
-        return new Promise(function (resolve, reject) {
-            resolve("");
-        });
+        return getUrlPromise(urlBN() + "res/api.php?action=sideBar");
     }).then(function (r) {
         document.getElementsByClassName("menuBar")[0].innerHTML = document.getElementsByClassName("menuBar")[0].innerHTML + r.replace(/href="/g,'href="'+urlBN());
     });

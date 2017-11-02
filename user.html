@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sito allenamenti OII</title>
+    <link rel="stylesheet" href="res/css/stile.css" type="text/css">
+    <script type="text/javascript" src="res/js/main.js"></script>
+    <script type="text/javascript" src="res/js/user.js"></script>
+    <link rel="stylesheet" href="res/css/notyf.min.css">
+</head>
+
+<body onload="loadUserPage()">
+    <h1>Pagina personale</h1>
+    <div class="leftPart">
+    </div>
+    <div class="mainPart">
+        <div class="post">
+            <h2>Statistiche</h2>
+            <p>Sei <span id="classPos"><img class="icons" src="res/icons/loading.gif"></span> in classifica</p>
+            <p>Hai risolto <span id="nProb"><img class="icons" src="res/icons/loading.gif"></span> problemi:</p>
+            <ul id="listaRisolti"></ul>
+            <h2 style="color:darkred">Cancellazione dell'account</h2>
+            Per prima cosa, inserisci la password: <input id="del-password" type="password">
+            <div onclick="eliminaAccount()" class="button">Elimina account</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="res/js/notyf.min.js"></script>
+</body>
+
+</html>

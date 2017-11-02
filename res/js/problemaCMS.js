@@ -93,24 +93,27 @@ function loadTask() {
     });
     solvedBy();
 }
+function add(currentUser,tsk) {
+    getUrlPromise(urlBN() + "res/api.php?action=userCMS&user=" + encodeURIComponent(currentUser.CMSUser)).then(function (r) {
+        r = JSON.parse(r).scores;
+        for (var j = 0; j < r.length; j++){
+            if (r[j].name == tsk && r[j].score == 100) {
+                li = document.createElement("li");
+                li.innerHTML = currentUser.Nome + ' ' + currentUser.Cognome + ', ' + currentUser.Classe;
+                document.getElementById("listaRisolto").appendChild(li);
+                break;
+            }
+        }
+    });
+}
 function solvedBy() {
+    document.getElementById("listaRisolto").innerHTML = "";
     document.getElementById("listaRisoltoW").classList.remove("nascosto");
     var tsk = document.getElementById("taskName").value;
     getUrlPromise(urlBN() + "res/api.php?action=listaUtentiCMS").then(function (dta) {
         dta = JSON.parse(dta);
         for (var i = 0; i < dta.length; i++){
-            var currentUser=dta[i]
-            getUrlPromise(urlBN() + "res/api.php?action=userCMS&user=" + encodeURIComponent(dta[i].CMSUser)).then(function (r) {
-                r = JSON.parse(r).scores;
-                for (var j = 0; j < r.length; j++){
-                    if (r[j].name == tsk && r[j].score == 100) {
-                        li = document.createElement("li");
-                        li.innerHTML = currentUser.Nome + ' ' + currentUser.Cognome + ', ' + currentUser.Classe;
-                        document.getElementById("listaRisolto").appendChild(li);
-                        break;
-                    }
-                }
-            });
+            add(dta[i],tsk);
         }
     });
 }

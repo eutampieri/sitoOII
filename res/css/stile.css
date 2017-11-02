@@ -38,6 +38,11 @@ h1{
         /*background-color: #1C75EB;*/
     }
 }
+@media screen and (max-width: 500px){   
+    .problemaRisolti {
+        display: block!important;
+    }
+}
 .aperti{
 	background-color: #ffff66!important;
 	margin-bottom: 1.5em;
@@ -143,7 +148,7 @@ img{
     border:1px solid #011622;
     border-radius:.5em
 }
-.cursoreMano{
+.cursoreMano, .button{
     cursor: pointer;
 }
 .whitebg{
@@ -159,4 +164,19 @@ embed{
 }
 .feedIcon{
     vertical-align: middle;
+}
+.problemaRisolti {
+    display: inline-block;
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 0.35em;
+    background-color: #80c827;
+    margin: 0.15em;
+    border-color: #365511;
+    border-width: 1.5px;
+    border-style: solid;
+    box-shadow: .15em .15em .5em #2B4E00;
+}
+#listaRisolti{
+    padding-left:0;
 }

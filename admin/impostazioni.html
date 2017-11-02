@@ -9,22 +9,34 @@
     <script type="text/javascript" src="../res/js/impostazioni.js"></script>
 </head>
 
-<body onload="loadEv()">
+<body onload="loadImpostazioni()">
     <h1>Impostazioni</h1>
     <div class="leftPart">
     </div>
     <div class="mainPart">
         <div class="post">
-            <h2>Aggiungi evento</h2>
-            Data e ora di inizio<input id="inizio"><br>
-            Data e ora di fine<input id="fine"><br>
-            Tipo evento: <select id="tipo">
-                <option>Gara</option>
-                <option>Lezione</option>
-            </select><br>
-            Descrizione:
-            <textarea id="descrizione"></textarea>
-            <a class="button cursoreMano" onclick="aggiungiEvento()">Aggiungi</a>
+            <h2>Tutor</h2>
+            <table>
+                <thead>
+                    <tr><th>Nome</th><th>Nome utente CMS</th><th></th></tr>
+                </thead>
+                <tbody id="tutor"></tbody>
+            </table>
+            <h2>Riferimenti classifica</h2>
+            <table>
+                <thead>
+                    <tr><th>Nome utente CMS</th><th></th></tr>
+                </thead>
+                <tbody id="rifClass"></tbody>
+            </table>
+            <h2>Telegram</h2>
+            Chiave del bot amministratore del canale: <input type="text" name="tg_bot"><br>
+            Nome del canale: <input type="text" name="tg_ch"><br>
+            <h2>Account mail</h2>
+            Username: <input type="text" name="mail_user"><br>
+            Password: <input type="password" name="mail_pwd"><br>
+            Server SMTP: <input type="text" name="mail_smtp"><br>
+            Porta server SMTP: <input type="text" name="mail_porta"><br>
         </div>
     </div>
     <script type="text/javascript" src="../res/js/notyf.min.js"></script>
