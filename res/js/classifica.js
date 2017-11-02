@@ -16,6 +16,25 @@ function listaUtentiRegistrati() {
         })
     });
 }
+function aggiungiaClassifica(dati) {
+    return new Promise(function (resolve, reject) {
+        getUrlPromise(urlBN() + "res/api.php?action=userDetailByCMS&user=" + encodeURIComponent(dati.username)).then(function (r) {
+            var n = document.createElement("li");
+            var ui = document.createElement("img");
+            ui.src = "https://www.gravatar.com/avatar/" + dati.mail_hash + "?d=identicon&s=100";
+            ui.classList.add("classAvatar");
+            n.appendChild(ui);
+            var userData = JSON.parse(r);
+            if (userData !== null) {
+                n.innerHTML += userData.nome + " " + userData.cognome + " (" + userData.classe + "), " + dati.score.toString() + " punti"
+            }
+            else {
+                n.innerHTML += dati.first_name + " " + dati.last_name + ", " + dati.score.toString() + " punti";
+            }
+            resolve([n,dati.score]);
+        });
+    });
+}
 function getUrlP(url, func) {
     return new Promise(function(resolve,reject){
     var webrequest = new XMLHttpRequest();
@@ -26,6 +45,7 @@ function getUrlP(url, func) {
     webrequest.send(null);});
 }
 function loadClassifica() {
+    var resClassifica = [];
     load();
     listaUtentiRegistrati().then(function (lista) {
         var pr = [];
@@ -36,25 +56,19 @@ function loadClassifica() {
                     var dati = JSON.parse(wr.responseText).users;
                     for (var j = 0; j < dati.length; j++) {
                         if (lista.indexOf(dati[j].username) !== -1) {
-                            var n = document.createElement("li");
-                            var ui = document.createElement("img");
-                            ui.src = "https://www.gravatar.com/avatar/" + dati[j].mail_hash + "?d=identicon&s=100";
-                            ui.classList.add("classAvatar");
-                            n.appendChild(ui);
-                            n.innerHTML += dati[j].first_name + " " + dati[j].last_name + ", " + dati[j].score.toString() + " punti"
-                            ar.push(n);
+                            aggiungiaClassifica(dati[j]).then(function (node) {
+                                resClassifica.push(node);
+                            });
                         }
                     }
-                    return (ar);
                 }
             ));
         }
         Promise.all(pr).then(function (values) {
             document.getElementById("classifica").innerHTML = "";
-            for (var i = 0; i < values.length; i++) {
-                for (var j = 0; j < values[i].length; j++) {
-                    document.getElementById("classifica").appendChild(values[i][j]);
-                }
+            resClassifica.sort(function(a,b){return b[1]-a[1]});
+            for (var i = 0; i < resClassifica.length; i++) {
+                document.getElementById("classifica").appendChild(resClassifica[i][0]);
             }
         });
     });

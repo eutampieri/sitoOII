@@ -48,6 +48,12 @@ function getUrl(url,func){
     webrequest.onload=func;
     webrequest.send(null);
 }
+function getUrlSync(url){
+    var webrequest = new XMLHttpRequest();
+    webrequest.open('GET', url, false);
+    webrequest.send(null);
+    return webrequest.responseText;
+}
 function urlBN(){
     var tmp = location.pathname.split("/");
     var bn=location.protocol+"//"+window.location.hostname+document.location.pathname.replace(tmp[tmp.length-1],"");

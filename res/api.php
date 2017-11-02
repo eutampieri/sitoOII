@@ -270,6 +270,12 @@ switch ($azione) {
         });
         echo $feed->feed($stmt->fetchAll(PDO::FETCH_ASSOC));
         break;
+    case "userDetailByCMS":
+        $stmt=$database->prepare('SELECT Nome as nome, Cognome as cognome, Classe as classe FROM Utenti WHERE CMSUser = :u;');
+        $stmt->bindParam(":u", $_GET["user"]);
+        $stmt->execute();
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)[0]);
+        break;
     default:
         # code...
         break;
