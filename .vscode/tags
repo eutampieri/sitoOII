@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+cartella	../ois/dl.py	/^cartella=user+"-"+str(u())$/;"	kind:variable	line:11
+cartella	../ois/fetch.py	/^cartella=user+"-"+str(u())$/;"	kind:variable	line:11
+dl.py	../ois/dl.py	1;"	kind:file	line:1
+fetch.py	../ois/fetch.py	1;"	kind:file	line:1
+msg	../ois/fetch.py	/^		msg=msg+"- \/dl"+str(p["name"])+" "+str(p["title"])+"\\n"$/;"	kind:variable	line:41
+msg	../ois/fetch.py	/^	msg="Sono stati trovati più problemi:\\n"$/;"	kind:variable	line:39
+s	../ois/dl.py	/^s=requests.post("https:\/\/cms.di.unipi.it\/api\/task",data=json.dumps(tsk),headers={"Content-Type":"application\/json"})$/;"	kind:variable	line:23
+s	../ois/fetch.py	/^	s=requests.post("https:\/\/cms.di.unipi.it\/api\/task",data=json.dumps(tsk),headers={"Content-Type":"application\/json"})$/;"	kind:variable	line:30
+s	../ois/fetch.py	/^s=requests.post("https:\/\/cms.di.unipi.it\/api\/task",data=json.dumps(search),headers={"Content-Type":"application\/json"})$/;"	kind:variable	line:22
+search	../ois/fetch.py	/^search={"action":"list","search":task,"first":0,"last":10}$/;"	kind:variable	line:21
+sendFile	../ois/dl.py	/^def sendFile(to,path):$/;"	kind:function	line:16
+sendFile	../ois/fetch.py	/^def sendFile(to,path):$/;"	kind:function	line:16
+sendMsg	../ois/dl.py	/^def sendMsg(to,msg):$/;"	kind:function	line:12
+sendMsg	../ois/fetch.py	/^def sendMsg(to,msg):$/;"	kind:function	line:12
+st	../ois/dl.py	/^st=tsk["statements"]["it"]$/;"	kind:variable	line:25
+st	../ois/fetch.py	/^	st=tsk["statements"]["it"]$/;"	kind:variable	line:32
+t	../ois/fetch.py	/^	t=t["tasks"][0]["name"]$/;"	kind:variable	line:28
+t	../ois/fetch.py	/^t=json.loads(s.text)$/;"	kind:variable	line:23
+task	../ois/dl.py	/^task=open(argv[1]).read().replace('\/dl','')$/;"	kind:variable	line:9
+task	../ois/fetch.py	/^task=open(argv[1]).read()$/;"	kind:variable	line:9
+tsk	../ois/dl.py	/^tsk=json.loads(s.text)$/;"	kind:variable	line:24
+tsk	../ois/dl.py	/^tsk={"action":"get","name":task}$/;"	kind:variable	line:22
+tsk	../ois/fetch.py	/^	tsk=json.loads(s.text)$/;"	kind:variable	line:31
+tsk	../ois/fetch.py	/^	tsk={"action":"get","name":t}$/;"	kind:variable	line:29
+url	../ois/dl.py	/^url="https:\/\/cms.di.unipi.it\/api\/files\/"+st+"\/"+task+".pdf"$/;"	kind:variable	line:26
+url	../ois/fetch.py	/^	url="https:\/\/cms.di.unipi.it\/api\/files\/"+st+"\/"+t+".pdf"$/;"	kind:variable	line:33
+user	../ois/dl.py	/^user=argv[2]$/;"	kind:variable	line:10
+user	../ois/fetch.py	/^user=argv[2]$/;"	kind:variable	line:10
