@@ -115,7 +115,10 @@ pre, code{
 	word-wrap: normal;
 	white-space: pre!important;
 /*	max-width: 80vw!important;
-*/	overflow-x:scroll!important;
+	overflow-x:scroll!important;*/
+}
+.pre-inline{
+    display: inline!important;
 }
 .noLnk::visited{
     color: inherit;
