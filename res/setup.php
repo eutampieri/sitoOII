@@ -5,7 +5,7 @@ CREATE TABLE Post(Titolo TEXT, Contenuto TEXT, Data INTEGER, Autore TEXT)
 CREATE TABLE Risorse(Nome TEXT, File BLOB, Autore TEXT, Data INTEGER)
 CREATE TABLE Notifiche(Username TEXT, JSON TEXT)
 CREATE TABLE Sessioni (ID TEXT, Username TEXT)
-CREATE TABLE Tutor (CMSUser TEXT, Bio TEXT, Image BLOB)
+CREATE TABLE Tutor (CMSUser TEXT)
 CREATE TABLE APIKeys (Servizio TEXT, Chiave TEXT)
 CREATE TABLE RifClassifica (CMSUser TEXT)
 CREATE TABLE Eventi (Descrizione TEXT, Inizio INTEGER, Fine INTEGER, Tipo TEXT);
