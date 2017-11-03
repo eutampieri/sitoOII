@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sito allenamenti OII</title>
+    <link rel="stylesheet" href="res/css/stile.css" type="text/css">
+    <script type="text/javascript" src="res/js/main.js"></script>
+    <script type="text/javascript" src="res/js/addTryOut.js"></script>
+</head>
+
+<body onload="loadCalendario()">
+    <h1>TryOut - Importa</h1>
+    <div class="leftPart">
+    </div>
+    <div class="mainPart">
+        <div class="post">
+                <div onclick="location=document.referrer" class="button noBlock">Indietro</div>
+            <h2>Gare</h2>
+            <ul id="gare">
+                <div style="text-align:center"><img src="res/icons/loading.gif"></div>
+            </ul>
+            <h2>Lezioni</h2>
+            <ul id="lezioni">
+                <div style="text-align:center"><img src="res/icons/loading.gif"></div>
+            </ul>
+        </div>
+    </div>
+    <pre>
+        <code>
+                file_get_contents('http://example.org');
+                
+                $cookies = array();
+                foreach ($http_response_header as $hdr) {
+                    if (preg_match('/^Set-Cookie:\s*([^;]+)/', $hdr, $matches)) {
+                        parse_str($matches[1], $tmp);
+                        $cookies += $tmp;
+                    }
+                }
+                print_r($cookies);
+                // Create a stream
+                $opts = array(
+                  'http'=>array(
+                    'method'=>"GET",
+                    'header'=>"Accept-language: en\r\n" .
+                              "Cookie: foo=bar\r\n"
+                  )
+                );
+                
+                $context = stream_context_create($opts);
+                
+                // Open the file using the HTTP headers set above
+                $file = file_get_contents('http://www.example.com/', false, $context);
+                
+                curl 'https://training.olinfo.it/api/submission' -H 'Host: training.olinfo.it' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:56.0) Gecko/20100101 Firefox/56.0' -H 'Accept: application/json, text/plain, */*' -H 'Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3' --compressed -H 'Content-Type: application/json;charset=utf-8' -H 'Referer: https://training.olinfo.it/' -H 'Cookie: _ga=GA1.3.1564937659.1509392558; _gid=GA1.3.924814111.1509572176; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImV1dGFtcGllcmkiLCJwaWN0dXJlIjoiLy9ncmF2YXRhci5jb20vYXZhdGFyLzc5OGZkOTgxNzFkMjY0YjM3Zjg1MGM1MzhkZjQ5Yjk1P2Q9aWRlbnRpY29uIiwiZmlyc3ROYW1lIjoiRXVnZW5pbyIsImxhc3ROYW1lIjoiVGFtcGllcmkiLCJlbWFpbCI6ImV1Z2VuaW8udGFtcGllcmlAaWNsb3VkLmNvbSIsImlkIjoyMDUyfQ.G2oah84foAQTllBEe_BxZA7acgWD4zvGYoiJ0fO7xr0' -H 'Connection: keep-alive' --data '{"action":"list","task_name":"cannoniere"}'
+                https://training.olinfo.it/api/files/b3571e7374dd3ad5d6e48b8207a7e5c5d7137440/cannoniere.cpp
+        </code>
+    </pre>
+</body>
+
+</html>
