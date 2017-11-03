@@ -87,12 +87,34 @@ switch ($azione) {
     case "lezioni":
         $stmt=$database->prepare("SELECT * FROM Eventi WHERE Tipo = \"Lezione\"");
         $stmt->execute();
+        header("Content-Type: application/json");
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         break;
     case "gare":
         $stmt=$database->prepare("SELECT * FROM Eventi WHERE Tipo = \"Gara\"");
         $stmt->execute();
+        header("Content-Type: application/json");
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        break;
+    case "sideBar":
+        $res="";
+        $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser)");
+        $stmt->bindParam(":id", $_COOKIE["sessione"]);
+        $stmt->execute();
+        $stmt1=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id");
+        $stmt1->bindParam(":id", $_COOKIE["sessione"]);
+        $stmt1->execute();
+        if(count($stmt->fetchAll(PDO::FETCH_ASSOC))==1){
+            $res=$res.file_get_contents("adminMenu.html");
+        }
+        if(count($stmt1->fetchAll(PDO::FETCH_ASSOC))==1){
+            $res=$res.file_get_contents("userMenu.html");
+        }
+        else{
+            $res=$res.file_get_contents("regMenu.html");
+        }
+        $res=$res."</ul>";
+        echo $res;
         break;
     case "isTutor":
         $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser)");
@@ -165,6 +187,7 @@ switch ($azione) {
         for($i=0;$i<count($dati);$i++){
             array_push($res,mb_convert_encoding($dati[$i]["Nome"], "UTF-8"));
         }
+        header("Content-Type: application/json");
         echo json_encode($res);
         break;
     case "iconaFile":
@@ -209,12 +232,14 @@ switch ($azione) {
     case "postList":
         $stmt=$database->prepare('SELECT Titolo, Contenuto, Data, Nome ||" "|| Cognome AS Autore FROM Post INNER JOIN Utenti ON Post.Autore=Utenti.Username ORDER BY Data DESC;');
         $stmt->execute();
+        header("Content-Type: application/json");
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         break;
     case "post":
         $stmt=$database->prepare('SELECT Titolo, Contenuto, Data, Nome ||" "|| Cognome AS Autore FROM Post INNER JOIN Utenti ON Post.Autore=Utenti.Username WHERE Data = :id');
         $stmt->bindParam(":id", $_GET["id"]);
         $stmt->execute();
+        header("Content-Type: application/json");
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)[0]);
         break;
     case "task":
@@ -244,6 +269,7 @@ switch ($azione) {
     case "listaUtentiCMS":
         $stmt=$database->prepare("SELECT Nome, Cognome, Classe, CMSUser FROM Utenti");
         $stmt->execute();
+        header("Content-Type: application/json");
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         break;
     case "rifClassifica":
@@ -254,6 +280,7 @@ switch ($azione) {
         foreach($a as $b){
             array_push($u,$b["CMSUser"]);
         }
+        header("Content-Type: application/json");
         echo json_encode($u);
         break;
     case "feed":
@@ -274,8 +301,77 @@ switch ($azione) {
         $stmt=$database->prepare('SELECT Nome as nome, Cognome as cognome, Classe as classe FROM Utenti WHERE CMSUser = :u;');
         $stmt->bindParam(":u", $_GET["user"]);
         $stmt->execute();
+        header("Content-Type: application/json");
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)[0]);
         break;
+    case "thisUserInfo":
+        $stmt=$database->prepare("SELECT Utenti.Nome as nome, Utenti.Cognome as cognome, Utenti.Classe as classe, Utenti.Username as user, Utenti.CMSUser as cms, Utenti.Email as email FROM Sessioni INNER JOIN Utenti ON Sessioni.Username = Utenti.Username WHERE ID = :id");
+        $stmt->bindParam(":id",$_COOKIE["sessione"]);
+        $stmt->execute();
+        $res=$stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+        if(count($res)==0){
+            echo "{}";
+            break;
+        }
+        $res=json_decode(json_encode($res),true);
+        $stmt=$database->prepare("SELECT Username FROM Sessioni WHERE ID = :id AND Username IN (SELECT Utenti.Username FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser)");
+        $stmt->bindParam(":id", $_COOKIE["sessione"]);
+        $stmt->execute();
+        $res["isTutor"]=(count($stmt->fetchAll(PDO::FETCH_ASSOC))==1);
+        header("Content-Type: application/json");
+        echo json_encode($res);
+        break;
+    case "eliminaAccount":
+        $stmt=$database->prepare("SELECT Utenti.Username as user, Utenti.Password as Password FROM Sessioni INNER JOIN Utenti ON Sessioni.Username = Utenti.Username WHERE ID = :id");
+        $stmt->bindParam(":id",$_COOKIE["sessione"]);
+        $stmt->execute();
+        $utenti=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        if(count($utenti)==1){
+            if(password_verify($_POST["password"],$utenti[0]["Password"])){
+                $stmt=$database->prepare("DELETE FROM Utenti WHERE Username = :u");
+                $stmt->bindParam(":u",$utenti[0]["user"]);
+                $stmt->execute();
+                $stmt=$database->prepare("DELETE FROM Sessioni WHERE ID = :id");
+                $stmt->bindParam(":id",$_COOKIE["sessione"]);
+                $stmt->execute();
+                setcookie("sessione",null,time()-100);
+                echo "OK";
+            }
+            else{
+                echo "Password errata";
+            }
+        }
+        break;
+        case "logout":
+            $stmt=$database->prepare("DELETE FROM Sessioni WHERE ID = :id");
+            $stmt->bindParam(":id",$_COOKIE["sessione"]);
+            $stmt->execute();
+            setcookie("sessione",null,time()-100);
+            header("Location: ../index.html#ok&Logout%20avvenuto%20con%20successo");
+            break;
+        case "tutorMD5":
+            $stmt=$database->prepare("SELECT Utenti.Email as hash FROM Tutor INNER JOIN Utenti ON Tutor.CMSUser = Utenti.CMSUser");
+            $stmt->execute();
+            $dr=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            $res=[];
+            foreach($dr as $m){
+                array_push($res,md5($m["hash"]));
+            }
+            header("Content-Type: application/json");
+            echo json_encode($res);
+            break;
+        case "gravatarProfile":
+            $options = array(
+                'http' => array(
+                    'protocol_version'=>'1.1',
+                    'method'=>"GET",
+                    "header"=>"User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:56.0) Gecko/20100101 Firefox/56.0\r\n"
+                )
+            );
+            $context  = stream_context_create($options);
+            header("Content-Type: application/json");
+            echo file_get_contents("https://gravatar.com/".$_GET["hash"].".json",false,$context);
+            break;
     default:
         # code...
         break;

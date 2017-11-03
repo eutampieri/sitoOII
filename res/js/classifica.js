@@ -50,8 +50,10 @@ function loadClassifica() {
     listaUtentiRegistrati().then(function (lista) {
         var pr = [];
         for (var i = 100; i < 801; i += 100) {
+            if (lista.length == resClassifica.length) break;
             pr.push(getUrlP(urlBN() + "res/api.php?action=classifica&first=" + (i - 100).toString() + "&last=" + i.toString(),
                 function (wr) {
+                    if (lista.length == resClassifica.length) return [];
                     var ar = [];
                     var dati = JSON.parse(wr.responseText).users;
                     for (var j = 0; j < dati.length; j++) {

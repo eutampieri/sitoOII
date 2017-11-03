@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sito allenamenti OII</title>
+    <link rel="stylesheet" href="res/css/stile.css" type="text/css">
+    <script type="text/javascript" src="res/js/main.js"></script>
+    <script type="text/javascript" src="res/js/md5.js"></script>
+    <script type="text/javascript" src="res/js/user.js"></script>
+    <link rel="stylesheet" href="res/css/notyf.min.css">
+</head>
+
+<body onload="loadUserPage()">
+    <h1>Pagina personale</h1>
+    <div class="leftPart">
+    </div>
+    <div class="mainPart">
+        <div class="post">
+            <div class="userWW"><img class="userPic" id="userPic"><span class="userWelcome" id="welcome">Benvenut#sex, #nome!</span></div>
+            <h2>Riconoscimenti</h2>
+            <div><span id="badgeNProblemi" class="badge nullBadge"><img class="imgBadge" src="res/imgs/badgeNumeroProblemi.png"></span><span class="badgeDesc" id="bDNP">Programmatore</span></div>
+            <div><span id="badgeClassifica" class="badge nullBadge"><img class="imgBadge" src="res/imgs/badgeClassifica.png"></span><span class="badgeDesc" id="bDC">Competitore</span></div>
+            <h2>Problemi risolti</h2>
+            <ul id="listaRisolti"></ul>
+            <h2 style="color:darkred">Cancellazione dell'account</h2>
+            Per prima cosa, inserisci la password: <input id="del-password" type="password">
+            <div onclick="eliminaAccount()" class="button">Elimina account</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="res/js/notyf.min.js"></script>
+</body>
+
+</html>
