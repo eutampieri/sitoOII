@@ -37,6 +37,19 @@ h1{
         text-align: center;
         /*background-color: #1C75EB;*/
     }
+    .tutorImage {
+        display: block!important;
+        margin: auto;
+    }
+    .tutorDesc{
+        display: block;
+        max-width: 100%!important;
+        margin-top: 0.5em!important;
+        margin-left: 0!important;
+    }
+    .tutorName{
+        text-align: center;
+    }
 }
 @media screen and (max-width: 500px){   
     .problemaRisolti {
@@ -170,7 +183,7 @@ embed{
     text-align: center;
     padding: 0.5em;
     border-radius: 0.35em;
-    background-color: #80c827;
+    background-color: #B4CD5A;
     margin: 0.15em;
     border-color: #365511;
     border-width: 1.5px;
@@ -179,4 +192,63 @@ embed{
 }
 #listaRisolti{
     padding-left:0;
+}
+.badge{
+    border-radius: 50%;
+    vertical-align: middle;
+    height: 2.5em;
+    width: 2.5em;
+    max-width:100%;
+    display: inline-block;
+    margin: 0.5em;
+}
+.badge.oro{
+    background-color:#ffcd57;
+}
+.badge.bronzo{
+    background-color:#b6ba94;
+}
+.badge.argento{
+    background-color:#a4bfc9;
+}
+.badge.platino{
+    background-color:#536e78;
+}
+.badge.nullBadge{
+    background-color:#dbdedf;
+}
+.userWelcome{
+    font-weight: bold;
+    font-size: 2em;
+    font-stretch: semi-condensed;
+    font-style: oblique;
+    vertical-align: middle;
+    margin:0.5em;
+    display: inline-block;
+}
+.userPic {
+    border-radius: 50%;
+    vertical-align: middle;
+    max-height: 5em;
+    max-width: 100%;
+    display: inline-block;
+}
+.userWW{
+    text-align: center;
+}
+.tutorImage {
+    max-height: 10em;
+    display: inline-block;
+    vertical-align: top;
+}
+.tutorDesc{
+    display: inline-block;
+    max-width: calc(95% - 10em);
+    vertical-align: top;
+    margin-top: 0;
+    margin-left: .5em;
+}
+.imgBadge {
+    width: 100%;
+    height: 100%;
 }

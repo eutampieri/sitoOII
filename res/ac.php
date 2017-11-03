@@ -29,7 +29,7 @@ for($i=0;$i<count($result["tasks"]);$i++){
 	if(!in_array($result["tasks"][$i]["name"], $prbls))
 	array_push($prbls, $result["tasks"][$i]["name"]);
 }
-$url = 'https://aica.cms.di.unipi.it/api/task';
+/*$url = 'https://aica.cms.di.unipi.it/api/task';
 $data = array("action"=>"list","search"=>$_GET["term"],"first"=>0,"last"=>100);
 $options = array(
     'http' => array(
@@ -43,5 +43,5 @@ $result = json_decode(file_get_contents($url, false, $context),true);
 for($i=0;$i<count($result["tasks"]);$i++){
 	if(!in_array($result["tasks"][$i]["name"], $prbls))
 	array_push($prbls, $result["tasks"][$i]["name"]);
-}
+}*/
 echo json_encode($prbls);

@@ -41,7 +41,7 @@ for($i=0;$i<count($result["tasks"]);$i++){
 		array_push($prbls, $qresult["tags"][$j]["name"]);
 	}
 }
-$url = 'https://aica.cms.di.unipi.it/api/task';
+/*$url = 'https://aica.cms.di.unipi.it/api/task';
 $data = array("action"=>"list","search"=>$_GET["problema"],"first"=>0,"last"=>100);
 
 // use key 'http' even if you send the request to https://...
@@ -68,6 +68,6 @@ for($i=0;$i<count($result["tasks"]);$i++){
 	for($j=0;$j<count($qresult["tags"]);$j++){
 		array_push($prbls, $qresult["tags"][$j]["name"]);
 	}
-}
+}*/
 echo json_encode($prbls);
 //echo exec("python afetch.py ".$_GET["term"]);

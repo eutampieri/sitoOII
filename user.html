@@ -6,6 +6,7 @@
     <title>Sito allenamenti OII</title>
     <link rel="stylesheet" href="res/css/stile.css" type="text/css">
     <script type="text/javascript" src="res/js/main.js"></script>
+    <script type="text/javascript" src="res/js/md5.js"></script>
     <script type="text/javascript" src="res/js/user.js"></script>
     <link rel="stylesheet" href="res/css/notyf.min.css">
 </head>
@@ -16,9 +17,11 @@
     </div>
     <div class="mainPart">
         <div class="post">
-            <h2>Statistiche</h2>
-            <p>Sei <span id="classPos"><img class="icons" src="res/icons/loading.gif"></span> in classifica</p>
-            <p>Hai risolto <span id="nProb"><img class="icons" src="res/icons/loading.gif"></span> problemi:</p>
+            <div class="userWW"><img class="userPic" id="userPic"><span class="userWelcome" id="welcome">Benvenut#sex, #nome!</span></div>
+            <h2>Riconoscimenti</h2>
+            <div><span id="badgeNProblemi" class="badge nullBadge"><img class="imgBadge" src="res/imgs/badgeNumeroProblemi.png"></span><span class="badgeDesc" id="bDNP">Programmatore</span></div>
+            <div><span id="badgeClassifica" class="badge nullBadge"><img class="imgBadge" src="res/imgs/badgeClassifica.png"></span><span class="badgeDesc" id="bDC">Competitore</span></div>
+            <h2>Problemi risolti</h2>
             <ul id="listaRisolti"></ul>
             <h2 style="color:darkred">Cancellazione dell'account</h2>
             Per prima cosa, inserisci la password: <input id="del-password" type="password">
