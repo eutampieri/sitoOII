@@ -49,27 +49,19 @@ function loadClassifica() {
     load();
     listaUtentiRegistrati().then(function (lista) {
         var pr = [];
-        for (var i = 100; i < 801; i += 100) {
-            if (lista.length == resClassifica.length) break;
-            pr.push(getUrlP(urlBN() + "res/api.php?action=classifica&first=" + (i - 100).toString() + "&last=" + i.toString(),
-                function (wr) {
-                    if (lista.length == resClassifica.length) return [];
-                    var ar = [];
-                    var dati = JSON.parse(wr.responseText).users;
-                    for (var j = 0; j < dati.length; j++) {
-                        if (lista.indexOf(dati[j].username) !== -1) {
-                            aggiungiaClassifica(dati[j]).then(function (node) {
-                                resClassifica.push(node);
-                            });
-                        }
-                    }
-                }
-            ));
+        for (var i = 0; i < lista.length; i++) {
+            pr.push(new Promise(function (resolve, reject) {
+                getUrlPromise(urlBN() + "res/api.php?action=userCMS&user=" + encodeURIComponent(lista[i])).then(function (r) {
+                    var user = JSON.parse(r);
+                    aggiungiaClassifica(user).then(function (n) { resClassifica.push(n); resolve();});
+                });
+            }));
         }
         Promise.all(pr).then(function (values) {
             document.getElementById("classifica").innerHTML = "";
             resClassifica.sort(function(a,b){return b[1]-a[1]});
             for (var i = 0; i < resClassifica.length; i++) {
+                console.log(resClassifica[i]);
                 document.getElementById("classifica").appendChild(resClassifica[i][0]);
             }
         });
