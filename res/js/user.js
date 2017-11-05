@@ -40,26 +40,20 @@ function posClassifica() {
         var resClassifica = [];
         listaUtentiRegistrati().then(function (lista) {
             var pr = [];
-            for (var i = 100; i < 801; i += 100) {
-                if (lista.length == resClassifica.length) break;
-                pr.push(getUrlP(urlBN() + "res/api.php?action=classifica&first=" + (i - 100).toString() + "&last=" + i.toString(),
-                    function (wr) {
-                        if (lista.length == resClassifica.length) return [];
-                        var ar = [];
-                        var dati = JSON.parse(wr.responseText).users;
-                        for (var j = 0; j < dati.length; j++) {
-                            if (lista.indexOf(dati[j].username) !== -1) {
-                                resClassifica.push([dati[j].score, dati[j].username]);
-                            }
-                        }
-                    }
-                ));
+            for (var i = 0; i < lista.length; i++){
+                pr.push(new Promise(function (resolve, reject) {
+                    getUrlPromise(urlBN() + "res/api.php?action=userCMS&user=" + encodeURIComponent(lista[i])).then(function (r) {
+                        var user = JSON.parse(r);
+                        resClassifica.push([user.score, user.username]);
+                        resolve();
+                    });
+                }));
             }
-            Promise.all(pr).then(function (values) {
+            Promise.all(pr).then(function () {
                 username().then(function (u) {
                     u = u.cms;
                     resClassifica.sort(function (a, b) { return b[0] - a[0] });
-                    //console.log(resClassifica);
+                    console.log(resClassifica);
                     for (var i = 0; i < resClassifica.length; i++) {
                         if (resClassifica[i][1] == u) resolve([i + 1,lista.length]);
                     }
